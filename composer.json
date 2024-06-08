@@ -1,0 +1,23 @@
+{
+    "name": "sethrensei/riotoon",
+    "description": "Lecture des Webtoons",
+    "require": {
+        "symfony/dotenv": "^7.1",
+        "altorouter/altorouter": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Riotoon\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Seth SITA",
+            "email": "sitaseth@yahoo.com"
+        },
+        {
+            "name": "Seth Eddi",
+            "email": "setheddi@gmail.com"
+        }
+    ]
+}
