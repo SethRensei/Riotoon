@@ -1,0 +1,19 @@
+*, ::after, ::before {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #333;
+}
+
+html,
+body {
+    font-size: 16px;
+    word-spacing: 2px;
+    word-wrap: break-word;
+    letter-spacing: 2px;
+}

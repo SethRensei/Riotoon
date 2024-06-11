@@ -6,6 +6,10 @@
         "altorouter/altorouter": "^2.0"
     },
     "autoload": {
+        "files": [
+            "src/functions/htmlHelpers.php",
+            "src/functions/helpers.php"
+        ],
         "psr-4": {
             "Riotoon\\": "src/"
         }

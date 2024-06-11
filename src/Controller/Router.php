@@ -45,7 +45,7 @@ class Router
      * @param string|null $name Optional. The name of the route.
      * @return \Riotoon\Controller\Router The Router instance for method chaining.
      */
-    public function post(string $url, string $view, string $name): self
+    public function post(string $url, string $view, string $name = null): self
     {
         $this->router->map('POST', $url, $view, $name);
         return $this;
@@ -58,7 +58,7 @@ class Router
      * @param string $name Optional. The name of the route.
      * @return \Riotoon\Controller\Router The Router instance for method chaining.
      */
-    public function fallOver(string $url, string $view, string $name): self
+    public function fallOver(string $url, string $view, string $name = null): self
     {
         $this->router->map('GET|POST', $url, $view, $name);
         return $this;
@@ -81,7 +81,7 @@ class Router
         try {
             ob_start();
             require $this->view_path . DIRECTORY_SEPARATOR . $view . '.php';
-            $pageContent = ob_get_clean();
+            $pg_content = ob_get_clean();
             require $this->view_path . DIRECTORY_SEPARATOR . $layout . '.php';
         } catch (\Exception $e) {
             echo '<p>' . $e->getMessage() . '</p>';
