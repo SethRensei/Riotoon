@@ -3,7 +3,8 @@
     "description": "Lecture des Webtoons",
     "require": {
         "symfony/dotenv": "^7.1",
-        "altorouter/altorouter": "^2.0"
+        "altorouter/altorouter": "^2.0",
+        "symfony/var-dumper": "^7.1"
     },
     "autoload": {
         "files": [

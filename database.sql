@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `webtoon` (
     `synopsis` LONGTEXT NOT NULL,
     `cover` VARCHAR(255) NOT NULL,
     `release_year` YEAR NOT NULL,
-    `status` BOOLEAN DEFAULT false,
+    `status` ENUM('progress', 'finished') NOT NULL,
     `modified_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT `pk_web` PRIMARY KEY(`id`)
 )
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `webtoon_genres`(
     `webtoon` INT NOT NULL,
     `genre` INT NOT NULL,
     CONSTRAINT `pk_web_gen` PRIMARY KEY(`id`),
-    CONSTRAINT `fk_web_gen1` Foreign Key (`webtooon`) REFERENCES `webtoon`(`id`),
+    CONSTRAINT `fk_web_gen1` Foreign Key (`webtoon`) REFERENCES `webtoon`(`id`),
     CONSTRAINT `fk_web_gen2` Foreign Key (`genre`) REFERENCES `genre`(`id`)
 )
 
@@ -51,11 +51,9 @@ VALUES ('Action'),
     ('Magie'),
     ('Musique'),
     ('Mystère'),
-    ('Parodie'),
-    ('Policier'),
     ('Politique'),
     ('Post-apocalyptique'),
-    ('Psychologique'),
+    ('Psycho'),
     ('Romance'),
     ('Sc-Fi'),
     ('School life'),
@@ -67,4 +65,5 @@ VALUES ('Action'),
     ('Steampunk'),
     ('Surnaturel'),
     ('Thriller'),
-    ('Tragédie');
+    ('Tragédie'),
+    ('Webcomic');

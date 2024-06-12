@@ -25,9 +25,12 @@ class WebtoonRepository extends Webtoon
             $query->bindValue(':sta', parent::getStatus());
             
             $query->execute();
+            $last_id = $this->connection->lastInsertId();
             $query->closeCursor();
         } catch (\PDOException $e) {
             die("Une erreur est survenue lors de l'insertion : " . $e->getMessage());
         }
+
+        return $last_id;
     }
 }

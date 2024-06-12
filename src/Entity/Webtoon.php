@@ -11,7 +11,7 @@ class Webtoon
     private string $synopsis;
     private string $cover;
     private int $release_year;
-    private bool $status;
+    private string $status;
     private $modified_at;
 
     
@@ -45,7 +45,7 @@ class Webtoon
      */
     public function setTitle(string $title): self
     {
-        $this->title = clean($title);
+        $this->title = clean(ucwords($title));
 
         return $this;
     }
@@ -154,9 +154,9 @@ class Webtoon
     /**
      * Get the value of status
      *
-     * @return bool
+     * @return string
      */
-    public function getStatus(): bool
+    public function getStatus(): string
     {
         return $this->status;
     }
@@ -168,8 +168,11 @@ class Webtoon
      *
      * @return self
      */
-    public function setStatus(bool $status): self
+    public function setStatus(string $status): self
     {
+        $status = strtolower(clean($status));
+        if (!in_array($status, ['progress', 'finished']))
+            BuildErrors::setErrors('status', 'Le statut doit être **progress** ou **finished**');
         $this->status = $status;
 
         return $this;
