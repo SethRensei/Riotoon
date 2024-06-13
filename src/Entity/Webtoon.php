@@ -13,7 +13,7 @@ class Webtoon
     private int $release_year;
     private string $status;
     private $modified_at;
-
+    private $genres;
     
 
     /**
@@ -184,5 +184,13 @@ class Webtoon
     public function getModifiedAt()
     {
         return $this->modified_at;
+    }
+
+    /**
+     * Get the value of genres
+     */
+    public function getGenres()
+    {
+        return $this->genres;
     }
 }

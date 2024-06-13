@@ -98,9 +98,7 @@ $errors = BuildErrors::getErrors();
         </div>
         <div class="col-md-10">
             <label class="form-label">Synopsis<i class="text-danger">*</i></label>
-            <textarea name="synopsis" rows="6" class="form-control">
-                <?= html_entity_decode($_POST['synopsis'] ?? '') ?>
-            </textarea>
+            <textarea name="synopsis" rows="6" class="form-control"><?= html_entity_decode($_POST['synopsis'] ?? '') ?></textarea>
         </div>
         <div class="col-md-10 mt-3">
             <label class="form-label">Genres<i class="text-danger">*</i></label>
