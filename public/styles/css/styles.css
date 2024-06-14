@@ -62,6 +62,14 @@ a {
     font-size: 1.2rem !important;
 }
 
+.list .item .text2 {
+    color: var(--col-blue1);
+    height: 50px;
+    display: none;
+    text-align: center;
+    padding-top: 5px;
+}
+
 .webt-list a {
     font-size: 11px !important;
     margin-bottom: 15px;

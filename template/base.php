@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>styles/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>styles/css/style-color.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>styles/css/styles.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>styles/css/navbar.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>styles/fontawesome/css/all.min.css">
 </head>
 <body>
     <?php

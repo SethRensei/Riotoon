@@ -21,6 +21,9 @@ $webtoons = $paginator->getData(Webtoon::class, 10, $page);
                     </div>
                     <div class="item">
                         <img src="<?= BASE_URL . $webtoon->getCover() ?>">
+                        <div class="text2">
+                            <h4><?= excerpt($webtoon->getTitle()) ?></h4>
+                        </div>
                     </div>
                 </div>
             </a>

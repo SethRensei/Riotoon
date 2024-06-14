@@ -71,6 +71,7 @@ class Router
     public function run(): self
     {
         $match = $this->router->match();
+        $view = 'index'; // Vue par défaut, permet également de rester sur la page d'accueil pour des url inexistant
         if(is_array($match)) {
             $view = $match['target'];
             $params = $match['params'];
