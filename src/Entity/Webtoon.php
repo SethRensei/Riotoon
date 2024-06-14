@@ -171,8 +171,8 @@ class Webtoon
     public function setStatus(string $status): self
     {
         $status = strtolower(clean($status));
-        if (!in_array($status, ['progress', 'finished']))
-            BuildErrors::setErrors('status', 'Le statut doit être **progress** ou **finished**');
+        if (!in_array($status, ['En cours', 'Terminé']))
+            BuildErrors::setErrors('status', 'Le statut doit être **En cours** ou **Terminé**');
         $this->status = $status;
 
         return $this;

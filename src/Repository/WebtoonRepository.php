@@ -53,4 +53,23 @@ class WebtoonRepository extends Webtoon
 
         return $this->items;
     }
+
+    public function fetchOne(string $field, $value)
+    {
+        $q = "SELECT webtoon.*, GROUP_CONCAT(label) AS genres
+            FROM webtoon
+            JOIN webtoon_genres ON webtoon.id = webtoon_genres.webtoon
+            JOIN genre ON genre.id = webtoon_genres.genre
+            WHERE webtoon.{$field} = " . $value . " 
+            GROUP BY webtoon.id";
+        try {
+            $query = $this->connection->query($q);
+            $query->setFetchMode(\PDO::FETCH_CLASS, Webtoon::class);
+            $this->items = $query->fetch();
+        } catch (\PDOException $e) {
+            die("Impossible d'éxecuter la requête" . $e->getMessage());
+        }
+
+        return $this->items;
+    }
 }

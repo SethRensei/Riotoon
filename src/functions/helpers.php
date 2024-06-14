@@ -18,3 +18,8 @@ function excerpt($content, int $limit = 15)
         return $content;
     return mb_substr($content, 0, $limit) . '...';
 }
+
+function goodURL(string $word): ?string
+{
+    return urlencode(strtolower(str_replace(' ', '-', $word)));
+}

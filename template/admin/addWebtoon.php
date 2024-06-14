@@ -91,8 +91,8 @@ $errors = BuildErrors::getErrors();
         <div class="col-md-3 mb-3">
             <label class="form-label">Statut<i class="text-danger">*</i></label>
             <select class="form-select" name="status">
-                <option value="progress" select>En cours</option>
-                <option value="finished">Terminé</option>
+                <option value="En cours" select>En cours</option>
+                <option value="Terminé">Terminé</option>
             </select>
         </div>
         <div class="col-md-10">

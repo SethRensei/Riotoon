@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `webtoon` (
     `synopsis` LONGTEXT NOT NULL,
     `cover` VARCHAR(255) NOT NULL,
     `release_year` YEAR NOT NULL,
-    `status` ENUM('progress', 'finished') NOT NULL,
+    `status` ENUM('En cours', 'Terminé') NOT NULL,
     `modified_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT `pk_web` PRIMARY KEY(`id`)
 )

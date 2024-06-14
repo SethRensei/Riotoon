@@ -14,7 +14,7 @@ $webtoons = $paginator->getData(Webtoon::class, 10, $page);
 <div class="page-content">
     <div class="webt-list">
         <?php foreach ($webtoons as $webtoon): ?>
-            <a href="">
+            <a href="<?= $router->url('show-webt', ['id' => $webtoon->getId(), 'title' => goodURL($webtoon->getTitle())]) ?>">
                 <div class="list">
                     <div class="text">
                         <h4><?= excerpt($webtoon->getTitle()) ?></h4>
