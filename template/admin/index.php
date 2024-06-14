@@ -103,6 +103,9 @@ $webtoons = $repository->findAll();
     </div>
     <button class="btn btn-primary">Rechercher</button>
 </form>
+<?php if (isset($_GET['add_webtoon'])): ?>
+    <?= messageFlash('success', 'Vous avez ajouté un webtoon') ?>
+<?php endif ?>
 <table class="table-responsive">
     <thead>
         <tr>

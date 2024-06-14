@@ -16,7 +16,7 @@ class GenreRepository extends Genre
 
     public function findAll() {
         try {
-            $query = $this->connection->query("SELECT * FROM genre");
+            $query = $this->connection->query("SELECT * FROM genre ORDER BY label ASC");
             $items = $query->fetchAll(\PDO::FETCH_CLASS, Genre::class);
         } catch (\PDOException $e) {
             die("Impossible de récupérer les information : " . $e->getMessage());

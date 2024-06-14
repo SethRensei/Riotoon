@@ -10,3 +10,11 @@ function clean($word): ?string
     // Trim leading and trailing whitespace, remove backslashes, and encode special characters
     return htmlentities(htmlspecialchars(stripslashes(trim($word))));
 }
+
+function excerpt($content, int $limit = 15)
+{
+    $content = html_entity_decode($content);
+    if (mb_strlen($content) <= $limit)
+        return $content;
+    return mb_substr($content, 0, $limit) . '...';
+}

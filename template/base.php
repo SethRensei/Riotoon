@@ -9,6 +9,7 @@
     <title><?= $pg_title ?? 'RioToon | Lecture et Téléchargement de Webtoon' ?></title>
     
     <link rel="stylesheet" href="<?= BASE_URL ?>styles/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>styles/css/style-color.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>styles/css/styles.css">
 </head>
 <body>

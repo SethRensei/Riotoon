@@ -36,8 +36,10 @@ CREATE TABLE IF NOT EXISTS `webtoon_genres`(
 INSERT INTO `genre` (`label`)
 VALUES ('Action'),
     ('Adulte'),
+    ('Arts Martiaux'),
     ('Aventure'),
     ('Biographie'),
+    ('Combat'),
     ('Comédie'),
     ('Cyberpunk'),
     ('Drame'),

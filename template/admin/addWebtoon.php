@@ -17,7 +17,7 @@ if (isset($_POST['validate'], $_FILES['image']['name'])) {
     // dd($_POST['genres']);
     if (!empty($_POST['title']) and !empty($_POST['author']) and !empty($_FILES['image']['size']) and !empty($_POST['release-year']) and !empty($_POST['status']) and !empty($_POST['synopsis']) and !empty($_POST['genres'])) {
         $image = clean($_FILES['image']['name']);
-        if($_FILES["image"]['size'] <= '5242880') {
+        if ($_FILES["image"]['size'] <= '5242880') {
             $ext_valid = ['jpeg', 'png', 'jpg', 'gif', 'jfif'];
             $ext_img = strtolower(substr(strchr($image, '.'), 1));
 
@@ -25,8 +25,11 @@ if (isset($_POST['validate'], $_FILES['image']['name'])) {
                 $directory = "../public/images/cover/";
                 if (!is_dir($directory))
                     mkdir($directory, 0777, true);
-
-                $name = str_replace([' ', '-', "'", '&'], '_', $_POST['title']) . '-cover_' . rand(1000, 99999);
+                $chars = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '+',
+                            '=', '[', ']', '{', '|', '}', '\\', ';', ':', '\'', '"', ',', 
+                            '.', '<', '>', '?', '/', ' '
+                        ];
+                $name = str_replace($chars, '_', $_POST['title']) . '-cover_' . rand(1000, 99999);
                 $path = $directory . strtolower($name) . '.' . $ext_img;
 
                 $result = move_uploaded_file($_FILES["image"]['tmp_name'], $path);
@@ -42,8 +45,8 @@ if (isset($_POST['validate'], $_FILES['image']['name'])) {
                     $id = $repository->add();
                     foreach ($_POST['genres'] as $v)
                         $gen_repo->addWebtoonGenre($id, $v);
-                    $success = true;
                     $_POST = [];
+                    header('Location:' . $router->url('home-admin') . '?add_webtoon=true');
                 } else
                     $errors = BuildErrors::setErrors('fail', "Upload échoué ou mauvais format des données");
             } else
@@ -64,9 +67,6 @@ $errors = BuildErrors::getErrors();
             <?= messageFlash('warning', $err) ?>
         <?php endforeach ?>
     <?php endif ?>
-    <?php if (isset($success) and $success == true): ?>
-        <?= messageFlash('success', 'Vous avez ajouté un webtoon') ?>
-    <?php endif ?>
     <h1 class="mb-3">Ajouter un Webtoon</h1>
     <form method="post" class="row g-3 mt-2 justify-content-center" enctype="multipart/form-data">
         <div class="col-md-5 form-group">
@@ -82,8 +82,7 @@ $errors = BuildErrors::getErrors();
         <div class="col-md-3 form-group">
             <label class="form-label">Sortie en<i class="text-danger">*</i></label>
             <input type="tel" maxlength="4" pattern="[0-9-() ]*" minlength="2" name="release-year"
-                value="<?= $_POST['release-year'] ?? '' ?>"
-                class="form-control">
+                value="<?= $_POST['release-year'] ?? '' ?>" class="form-control">
         </div>
         <div class="col-md-4">
             <label class="form-label">Photo<i class="text-danger">*</i></label>
@@ -98,15 +97,15 @@ $errors = BuildErrors::getErrors();
         </div>
         <div class="col-md-10">
             <label class="form-label">Synopsis<i class="text-danger">*</i></label>
-            <textarea name="synopsis" rows="6" class="form-control"><?= html_entity_decode($_POST['synopsis'] ?? '') ?></textarea>
+            <textarea name="synopsis" rows="6"
+                class="form-control"><?= html_entity_decode($_POST['synopsis'] ?? '') ?></textarea>
         </div>
         <div class="col-md-10 mt-3">
             <label class="form-label">Genres<i class="text-danger">*</i></label>
             <div id="grid">
                 <?php foreach ($genres as $genre): ?>
                     <div>
-                        <input type="checkbox" value="<?= $genre->getId() ?>"
-                            name="genres[]"><?= $genre->getLabel() ?>
+                        <input type="checkbox" value="<?= $genre->getId() ?>" name="genres[]"><?= $genre->getLabel() ?>
                     </div>
                 <?php endforeach ?>
             </div>
