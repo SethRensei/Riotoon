@@ -38,6 +38,26 @@ class WebtoonRepository extends Webtoon
         return $last_id;
     }
 
+    public function edit($id)
+    {
+        try {
+            $query = $this->connection->prepare("UPDATE webtoon SET title = :tit, author = :aut, synopsis = :syn, cover = :cov, release_year = :rel, status = :sta
+            WHERE id = :id");
+            $query->bindValue(':tit', parent::getTitle());
+            $query->bindValue(':aut', parent::getAuthor());
+            $query->bindValue(':syn', parent::getSynopsis());
+            $query->bindValue(':cov', parent::getCover());
+            $query->bindValue(':rel', parent::getReleaseYear());
+            $query->bindValue(':sta', parent::getStatus());
+            $query->bindValue(':id', $id);
+
+            $query->execute();
+            $query->closeCursor();
+        } catch (\PDOException $e) {
+            die("Une erreur est survenue lors de la mise à jour : " . $e->getMessage());
+        }
+    }
+
     public function findAll()
     {
         try {
@@ -56,7 +76,7 @@ class WebtoonRepository extends Webtoon
 
     public function fetchOne(string $field, $value)
     {
-        $q = "SELECT webtoon.*, GROUP_CONCAT(label) AS genres
+        $q = "SELECT webtoon.*, GROUP_CONCAT(genre) AS id_genres, GROUP_CONCAT(label) AS genres
             FROM webtoon
             JOIN webtoon_genres ON webtoon.id = webtoon_genres.webtoon
             JOIN genre ON genre.id = webtoon_genres.genre

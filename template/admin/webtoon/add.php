@@ -14,47 +14,28 @@ $genres = $gen_repo->findAll();
 $repository = new WebtoonRepository();
 
 if (isset($_POST['validate'], $_FILES['image']['name'])) {
-    // dd($_POST['genres']);
     if (!empty($_POST['title']) and !empty($_POST['author']) and !empty($_FILES['image']['size']) and !empty($_POST['release-year']) and !empty($_POST['status']) and !empty($_POST['synopsis']) and !empty($_POST['genres'])) {
-        $image = clean($_FILES['image']['name']);
-        if ($_FILES["image"]['size'] <= '5242880') {
-            $ext_valid = ['jpeg', 'png', 'jpg', 'gif', 'jfif'];
-            $ext_img = strtolower(substr(strchr($image, '.'), 1));
-
-            if (in_array($ext_img, $ext_valid)) {
-                $directory = "../public/images/cover/";
-                if (!is_dir($directory))
-                    mkdir($directory, 0777, true);
-                $chars = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '+',
-                            '=', '[', ']', '{', '|', '}', '\\', ';', ':', '\'', '"', ',', 
-                            '.', '<', '>', '?', '/', ' '
-                        ];
-                $name = str_replace($chars, '_', $_POST['title']) . '-cover_' . rand(1000, 99999);
-                $path = $directory . strtolower($name) . '.' . $ext_img;
-
-                $result = move_uploaded_file($_FILES["image"]['tmp_name'], $path);
-                $repository->setTitle($_POST['title'])
-                    ->setAuthor($_POST['author'])
-                    ->setReleaseYear($_POST['release-year'])
-                    ->setStatus($_POST['status'])
-                    ->setCover(str_replace('../public/', '', $path))
-                    ->setSynopsis($_POST['synopsis']);
-                $errors = BuildErrors::getErrors();
-                //voir si l'image a bien été uploadé et qu'il n'y a plus d'erreurs
-                if ($result and empty($errors)) {
-                    $id = $repository->add();
-                    foreach ($_POST['genres'] as $v)
-                        $gen_repo->addWebtoonGenre($id, $v);
-                    $_POST = [];
-                    header('Location:' . $router->url('home-admin') . '?add_webtoon=true');
-                } else
-                    $errors = BuildErrors::setErrors('fail', "Upload échoué ou mauvais format des données");
-            } else
-                $errors = BuildErrors::setErrors('cover', 'xtension doit être jpeg, jpg, png, gif ou jfif');
+        $name = str_replace(chars(), '_', clean($_POST['title'])) . '-cover_' . rand(1000, 99999);
+        $path = uploadFile($_FILES['image'], $name);
+        $repository->setTitle($_POST['title'])
+        ->setAuthor($_POST['author'])
+        ->setReleaseYear($_POST['release-year'])
+        ->setStatus($_POST['status'])
+        ->setCover(str_replace('../public/', '', $path))
+        ->setSynopsis($_POST['synopsis']);
+        $errors = BuildErrors::getErrors();
+        $result = move_uploaded_file($_FILES['image']['tmp_name'], $path);
+        //voir si l'image a bien été uploadé et qu'il n'y a plus d'erreurs
+        if ($result and empty($errors)) {
+            $id = $repository->add();
+            foreach ($_POST['genres'] as $v)
+                $gen_repo->addWebtoonGenre($id, $v);
+            $_POST = [];
+            header('Location:' . $router->url('home-admin') . '?add_webtoon=true');
         } else
-            $errors = BuildErrors::setErrors('cover', 'L\'image fait plus de 5Mo');
+            BuildErrors::setErrors('fail', "Upload échoué ou mauvais format des données");
     } else
-        $errors = BuildErrors::setErrors('empty', 'Veuillez remplir tous les champs');
+        BuildErrors::setErrors('empty', 'Veuillez remplir tous les champs');
 }
 
 $errors = BuildErrors::getErrors();

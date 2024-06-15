@@ -37,4 +37,15 @@ class GenreRepository extends Genre
             die("Une erreur est survenue lors de l'insertion : " . $e->getMessage());
         }
     }
+
+    public function deleteWebtoonGenre($webtoon) {
+        try {
+            $query = $this->connection->prepare('DELETE FROM webtoon_genres WHERE webtoon = :web');
+            $query->bindValue(':web', clean($webtoon));
+            $query->execute();
+            $query->closeCursor();
+        } catch (\PDOException $e) {
+            die("Une erreur est survenue lors de suppression des genres du webtoon : " . $e->getMessage());
+        }
+    }
 }

@@ -3,6 +3,8 @@
 use Riotoon\Entity\Webtoon;
 use Riotoon\Repository\WebtoonRepository;
 
+$is_admin = true;
+
 $pg_title = "Page d'accueil | RioToon - Administration";
 
 $repository = new WebtoonRepository();
@@ -106,6 +108,9 @@ $webtoons = $repository->findAll();
 <?php if (isset($_GET['add_webtoon'])): ?>
     <?= messageFlash('success', 'Vous avez ajouté un webtoon') ?>
 <?php endif ?>
+<?php if (isset($_GET['edit_webt'])): ?>
+    <?= messageFlash('success', 'Modification du webtoon réussi') ?>
+<?php endif ?>
 <table class="table-responsive">
     <thead>
         <tr>
@@ -117,14 +122,14 @@ $webtoons = $repository->findAll();
             <th>Sortie</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="text-dark">
         <?php foreach ($webtoons as $webtoon): ?>
             <tr>
                 <td data-label="ID" translate="no">#<?= $webtoon->getId()?></td>
                 <td data-label="Titre" translate="no"><?= $webtoon->getTitle()?></td>
-                <td data-label="Auteur"><?= $webtoon->getAuthor()?></td>
+                <td data-label="Auteur"><?= excerpt($webtoon->getAuthor())?></td>
                 <td data-label="Statut"><?= $webtoon->getStatus() ?></td>
-                <td data-label="Genres"><?= $webtoon->getGenres()?></td>
+                <td data-label="Genres"><?= excerpt($webtoon->getGenres(), 18)?></td>
                 <td data-label="Sortie"><?= $webtoon->getReleaseYear() ?></td>
             </tr>
         <?php endforeach ?>

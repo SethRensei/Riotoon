@@ -13,6 +13,7 @@ class Webtoon
     private int $release_year;
     private string $status;
     private $modified_at;
+    private $id_genres;
     private $genres;
     
 
@@ -69,7 +70,7 @@ class Webtoon
      */
     public function setAuthor(string $author): self
     {
-        $this->author = clean($author);
+        $this->author = clean(ucwords($author));
 
         return $this;
     }
@@ -120,6 +121,8 @@ class Webtoon
      */
     public function setCover(string $cover): self
     {
+        if ($cover == '')
+            BuildErrors::setErrors('image', 'Impossible de charger une image vide');
         $this->cover = $cover;
 
         return $this;
@@ -170,7 +173,7 @@ class Webtoon
      */
     public function setStatus(string $status): self
     {
-        $status = strtolower(clean($status));
+        $status = ucfirst(clean($status));
         if (!in_array($status, ['En cours', 'Terminé']))
             BuildErrors::setErrors('status', 'Le statut doit être **En cours** ou **Terminé**');
         $this->status = $status;
@@ -192,5 +195,13 @@ class Webtoon
     public function getGenres()
     {
         return $this->genres;
+    }
+
+    /**
+     * Get the value of id_genres
+     */
+    public function getIdGenres()
+    {
+        return explode(',', $this->id_genres);
     }
 }

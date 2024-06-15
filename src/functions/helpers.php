@@ -1,5 +1,7 @@
 <?php
 
+use Riotoon\Service\BuildErrors;
+
 /**
  * Cleans and sanitizes a string input.
  * @param mixed $word The string to be cleaned.
@@ -21,5 +23,36 @@ function excerpt($content, int $limit = 15)
 
 function goodURL(string $word): ?string
 {
-    return urlencode(strtolower(str_replace(' ', '-', $word)));
+    return urlencode(strtolower(str_replace(chars(), '-', $word)));
+}
+
+function uploadFile(
+    $image,
+    $name,
+    string $directory = '../public/images/cover/',
+    string $size = '5242880',
+    array $extension = ['jpeg', 'png', 'jpg', 'gif', 'jfif']
+): ?string {
+    $image_name = clean($image['name']);
+    if ($image['size'] <= $size) {
+        $ext_img = strtolower(substr(strchr($image_name, '.'), 1));
+        if (in_array($ext_img, $extension)) {
+            if (!is_dir($directory))
+                mkdir($directory, 0777, true);
+            
+            return $directory . strtolower($name) . '.' . $ext_img;
+        } else
+            BuildErrors::setErrors('image', 'L\'extension doit être ' . implode(', ', $extension));
+    } else
+        BuildErrors::setErrors('image', 'L\'image fait plus de 5Mo');
+
+    return '';
+}
+
+function chars(): ?array
+{
+    return ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '+',
+                    '=', '[', ']', '{', '|', '}', '\\', ';', ':', '\'', '"', ',', 
+                    '.', '<', '>', '?', '/', ' '
+                ];
 }

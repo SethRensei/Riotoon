@@ -26,6 +26,7 @@
         <?= $pg_content?>
     </div>
     <script src="<?=BASE_URL?>styles/js/jquery.js"></script>
+    <script type="text/javascript" src="<?= BASE_URL; ?>styles/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?=BASE_URL?>styles/js/main.js"></script>
 </body>
 </html>
