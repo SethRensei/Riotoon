@@ -8,7 +8,8 @@ composer install
 
 Quelques fonctionnalités à implémenter:
 - [x] Système de routage d'url
-- [ ] CRUD sur les webtoons
+- [x] CRUD sur les webtoons
+- [ ] CRUD sur les chapitres
 - [ ] Système d'inscription
 - [ ] Système de connexion (authentification)
 - [ ] Système de like et dislike

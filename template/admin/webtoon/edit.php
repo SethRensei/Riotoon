@@ -18,14 +18,9 @@ $repository = new WebtoonRepository();
 /** @var Webtoon|false */
 $webtoon = $repository->fetchOne("id", $id);
 
-if ($webtoon === false) {
+if ($webtoon === false)
     throw new Exception("Aucun webtoon n'a été trouvé");
-}
-if ($webtoon->getId() !== $id) {
-    http_response_code(301);
-    header('Location: ' . $router->url('home-admin'));
-    exit();
-}
+
 $pg_title = 'Modifier ' . $webtoon->getTitle() . ' | RioToon - Administration';
 
 $current_genres = explode(',', $webtoon->getGenres());
@@ -44,12 +39,11 @@ if (isset($_POST['validate'])) {
             ->setStatus($_POST['status'])
             ->setCover($webtoon->getCover())
             ->setSynopsis($_POST['synopsis']);
-        if (isset($_FILES['image']['name']) && !empty($_FILES['image']['name'])) {
-            $name = str_replace(chars(), '_', clean($_POST['title'])) . '-cover_' . rand(1000, 99999);
+        if (!empty($_FILES['image']['name'])) {
+            $name = replace(clean($_POST['title'])) . '-cover_' . rand(1000, 99999);
             $path = uploadFile($_FILES['image'], $name);
             $repository->setCover(str_replace('../public/', '', $path));
-            $result = move_uploaded_file($_FILES['image']['tmp_name'], $path);
-            if ($result)
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $path))
                 unlink('../public/' . $webtoon->getCover());
         }
         $errors = BuildErrors::getErrors();
@@ -64,7 +58,7 @@ if (isset($_POST['validate'])) {
             $_POST = [];
             header('Location:' . $router->url('home-admin') . '?edit_webt=true');
         } else
-            BuildErrors::setErrors('fail', "Upload échoué ou mauvais format des données");
+            BuildErrors::setErrors('fail', "Ajout des données échoué");
     } else
         BuildErrors::setErrors('empty', 'Veuillez remplir tous les champs');
 }
@@ -73,7 +67,7 @@ $errors = BuildErrors::getErrors();
 
 ?>
 
-<div class="fs-4 mt-5">
+<div class="fs-4" style="margin-top: 95px;">
     <h1><?= $webtoon->getTitle() ?></h1>
     <div class="card mb-3 col-md-2">
         <img src="<?= BASE_URL . $webtoon->getCover() ?>">
@@ -112,7 +106,7 @@ $errors = BuildErrors::getErrors();
         </div>
         <div class="col-md-10">
             <label class="form-label">Synopsis<i class="text-danger">*</i></label>
-            <textarea name="synopsis" rows="6" class="form-control"><?= html_entity_decode($webtoon->getSynopsis()) ?></textarea>
+            <textarea name="synopsis" rows="6" class="form-control"><?= unClean($webtoon->getSynopsis()) ?></textarea>
         </div>
         <div class="col-md-10 mt-3">
             <label class="form-label">Genres<i class="text-danger">*</i></label>

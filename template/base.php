@@ -25,6 +25,13 @@
     <div class="container-lg">
         <?= $pg_content?>
     </div>
+
+    <?php
+    if (isset($is_admin) && $is_admin == true)
+        require_once '_partials/footerAdmin.php';
+    else
+        require_once '_partials/footer.php';
+    ?>
     <script src="<?=BASE_URL?>styles/js/jquery.js"></script>
     <script type="text/javascript" src="<?= BASE_URL; ?>styles/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?=BASE_URL?>styles/js/main.js"></script>

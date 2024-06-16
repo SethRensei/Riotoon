@@ -15,7 +15,7 @@ $repository = new WebtoonRepository();
 
 if (isset($_POST['validate'], $_FILES['image']['name'])) {
     if (!empty($_POST['title']) and !empty($_POST['author']) and !empty($_FILES['image']['size']) and !empty($_POST['release-year']) and !empty($_POST['status']) and !empty($_POST['synopsis']) and !empty($_POST['genres'])) {
-        $name = str_replace(chars(), '_', clean($_POST['title'])) . '-cover_' . rand(1000, 99999);
+        $name = replace(clean($_POST['title'])) . '-cover_' . rand(1000, 99999);
         $path = uploadFile($_FILES['image'], $name);
         $repository->setTitle($_POST['title'])
         ->setAuthor($_POST['author'])
@@ -24,16 +24,15 @@ if (isset($_POST['validate'], $_FILES['image']['name'])) {
         ->setCover(str_replace('../public/', '', $path))
         ->setSynopsis($_POST['synopsis']);
         $errors = BuildErrors::getErrors();
-        $result = move_uploaded_file($_FILES['image']['tmp_name'], $path);
         //voir si l'image a bien été uploadé et qu'il n'y a plus d'erreurs
-        if ($result and empty($errors)) {
+        if (empty($errors and move_uploaded_file($_FILES['image']['tmp_name'], $path))) {
             $id = $repository->add();
             foreach ($_POST['genres'] as $v)
                 $gen_repo->addWebtoonGenre($id, $v);
             $_POST = [];
             header('Location:' . $router->url('home-admin') . '?add_webtoon=true');
         } else
-            BuildErrors::setErrors('fail', "Upload échoué ou mauvais format des données");
+            BuildErrors::setErrors('fail', "Ajout des données échoué");
     } else
         BuildErrors::setErrors('empty', 'Veuillez remplir tous les champs');
 }
@@ -42,7 +41,7 @@ $errors = BuildErrors::getErrors();
 
 ?>
 
-<div class="mt-5 fs-4">
+<div class="fs-4" style="margin-top: 95px;">
     <?php if (!empty($errors)): ?>
         <?php foreach ($errors as $err): ?>
             <?= messageFlash('warning', $err) ?>
@@ -79,7 +78,7 @@ $errors = BuildErrors::getErrors();
         <div class="col-md-10">
             <label class="form-label">Synopsis<i class="text-danger">*</i></label>
             <textarea name="synopsis" rows="6"
-                class="form-control"><?= html_entity_decode($_POST['synopsis'] ?? '') ?></textarea>
+                class="form-control"><?= unClean($_POST['synopsis'] ?? '') ?></textarea>
         </div>
         <div class="col-md-10 mt-3">
             <label class="form-label">Genres<i class="text-danger">*</i></label>

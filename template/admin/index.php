@@ -47,6 +47,18 @@ $webtoons = $repository->findAll();
         background-color: #A3B4C8;
     }
 
+    .table-responsive td #add {
+        color: #61a476;
+    }
+
+    .table-responsive td #edit {
+        color: #FFA101;
+    }
+
+    .table-responsive td #remove {
+        color: #F21137;
+    }
+
     @media only screen and (max-width: 878px) {
 
         .table-responsive table,
@@ -98,7 +110,7 @@ $webtoons = $repository->findAll();
         }
     }
 </style>
-<form class="container mt-5 mb-4">
+<form class="container mb-4" style="margin-top: 95px;">
     <div class="form-group mb-2">
         <input type="text" name="q" class="form-control" placeholder="Rechercher par titre"
             value="<?= clean($_GET['q'] ?? '') ?>">
@@ -120,6 +132,7 @@ $webtoons = $repository->findAll();
             <th>Statut</th>
             <th>Genres</th>
             <th>Sortie</th>
+            <th colspan="3">Actions</th>
         </tr>
     </thead>
     <tbody class="text-dark">
@@ -131,6 +144,16 @@ $webtoons = $repository->findAll();
                 <td data-label="Statut"><?= $webtoon->getStatus() ?></td>
                 <td data-label="Genres"><?= excerpt($webtoon->getGenres(), 18)?></td>
                 <td data-label="Sortie"><?= $webtoon->getReleaseYear() ?></td>
+                <td data-label="Action1"><a href="<?= $router->url('add-chap', ['id' => $webtoon->getId()]) ?>"><i
+                            id="add" class="fas fa-sharp fa-solid fa-plus"></i></a></td>
+                <td data-label="Action2"><a href="<?= $router->url('edit-webt', ['id' => $webtoon->getId()]) ?>"><i
+                            id="edit" class="fas fa-solid fa-pencil"></i></a></td>
+                <td data-label="Action3">
+                    <form action="<?= $router->url('del-webt', ['id' => $webtoon->getId()]) ?>" method="post"
+                        onsubmit="return confirm('Voulez-vous vraiment éffectuer cette action ?')"><button type="submit"
+                            style="border: none; background: transparent;"><i id="remove" class="fa-solid fa-trash-can"></i></button>
+                    </form>
+                </td>
             </tr>
         <?php endforeach ?>
     </tbody>

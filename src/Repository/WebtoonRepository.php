@@ -58,6 +58,18 @@ class WebtoonRepository extends Webtoon
         }
     }
 
+    public function delete($id)
+    {
+        try {
+            $query = $this->connection->prepare('DELETE FROM webtoon WHERE id = :id');
+            $query->bindValue(':id', clean($id));
+            $query->execute();
+            $query->closeCursor();
+        } catch (\PDOException $e) {
+            die("Une erreur est survenue lors de suppression des genres du webtoon : " . $e->getMessage());
+        }
+    }
+
     public function findAll()
     {
         try {

@@ -25,7 +25,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
                             <li><a class="dropdown-item <?= $pg_title === "Ajouter un Webtoon | RioToon - Administration" ? "active" : "" ?>"
-                                    href="<?= $router->url("add") ?>">Ajouter un Webtoon</a></li>
+                                    href="<?= $router->url("add-webt") ?>">Ajouter un Webtoon</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -33,4 +33,4 @@
         </div>
     </div>
 </nav>
-<div style="margin-top: 95px;"></div>
+<!-- <div style="margin-top: 95px;"></div> -->
