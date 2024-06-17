@@ -421,3 +421,212 @@ a {
 }
 
 /* END STYLE POUR LA PAGE READ */
+
+/* START STYLE POUR LA PAGE D'INSCRIPTION */
+
+.content-form {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-form .form {
+    flex-basis: 100%;
+    max-width: 30rem;
+    background-color: rgba(255, 255, 255, .96);
+    padding: 3.22rem 0;
+    position: relative;
+    z-index: 5;
+    border-radius: 14px;
+    box-shadow: 0 0 30px rgba(167, 184, 145, 0.5);
+}
+
+.content-form .form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15rem;
+    width: 100%;
+    background: linear-gradient(45deg, var(--col-blue1), #2B426D, #7380A8);
+    border-radius: 0 0 100% 100%;
+    transition: all .3s;
+    z-index: -1;
+}
+
+.content-form .form h1 {
+    position: absolute;
+    top: 0.58rem;
+    left: 3rem;
+    color: black;
+    font-size: 2.3rem;
+}
+
+.content-form .form p {
+    margin: 0;
+    text-align: center;
+    color: var(--col-red);
+}
+
+.content-form .form-input p {
+    position: absolute;
+    top: 98%;
+    color: var(--col-red);
+    font-size: 14px;
+}
+
+.content-form .form form {
+    background-color: rgba(255, 255, 255, .96);
+    padding: 1rem 2rem;
+    border-radius: 14px;
+    box-shadow: 0 0 30px rgba(167, 184, 145, 0.5);
+    transform: translateX(10rem);
+    transition: all .3s;
+}
+
+.content-form .form .form-input {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.content-form .form .form-input i {
+    font-size: 1.25rem;
+    margin-right: 1rem;
+    color: var(--col-blue2);
+    padding: 3px;
+}
+
+.content-form .form .form-input input {
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #000;
+    font-size: 1.25rem;
+    padding: 1rem 0;
+    background: transparent;
+}
+
+.content-form .form .form-input .bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    width: 100%;
+    height: 1px;
+}
+
+.content-form .form .form-input .bar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: var(--col-blue1);
+    width: 100%;
+    height: 2px;
+    transform: scale(0);
+    transform-origin: left;
+    transition: transform .5s;
+}
+
+.content-form .form .form-input input:focus+.bar::after {
+    transform: scale(1);
+}
+
+.view {
+    display: flex;
+    color: black;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.2s;
+    right: 5px;
+    z-index: 10;
+    cursor: pointer;
+    font-size: 28px;
+}
+
+.content-form .form .form-input .view:hover {
+    color: var(--col-blue2);
+}
+
+.view .fa-eye,
+.r-error {
+    display: none;
+}
+
+.content-form .form form .submit-btn {
+    display: block;
+    border: none;
+    outline: none;
+    font-size: 1.3rem;
+    color: black;
+    font-weight: 600;
+    background: linear-gradient(45deg, var(--col-blue1), #2B426D, #7380A8);
+    border-radius: 24px;
+    padding: 1rem 1.2rem;
+    text-align: center;
+    cursor: pointer;
+    margin: 1rem auto 2rem;
+    transition: all .3s;
+}
+
+.content-form .form form .submit-btn:hover {
+    background: linear-gradient(-45deg, var(--col-blue1), #2B426D, #7380A8);
+}
+
+
+@media (max-width: 985px) {
+    .content-form .form h1 {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .content-form .form form {
+        transform: translateX(0);
+        border-radius: unset;
+        box-shadow: unset;
+    }
+
+    .content-form .form form::before {
+        height: 10rem;
+    }
+}
+
+/* END STYLE POUR LA PAGE D'INSCRIPTION */
+
+/* START FOR VERIFYACCOUNT */
+
+div.form-verif {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+div.error-verif {
+    position: absolute;
+    top: 20px;
+    font-size: var(--font-h);
+}
+.verify-form {
+    width: 500px;
+    background-color: #eeeeee;
+    padding: 5px 30px;
+    display: grid;
+    gap: 25px;
+    padding-bottom: 30px;
+}
+.verify-form h3 {
+    color: #000;
+    font-size: var(--font-h-m);
+}
+.verify-form input {
+    width: 100%;
+    padding: 10px;
+}
+/* END FOR VERIFYACCOUNT */

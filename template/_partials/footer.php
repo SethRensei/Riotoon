@@ -8,7 +8,7 @@ $repository = new GenreRepository();
 /** @var Genre */
 $genres = $repository->findAll();
 ?>
-
+<?php if (!isset($navbar)) : ?>
 <footer class="footer-section">
     <div class="container">
         <div class="footer-cta pt-5 pb-5">
@@ -96,3 +96,4 @@ $genres = $repository->findAll();
         </div>
     </div>
 </footer>
+<?php endif ?>

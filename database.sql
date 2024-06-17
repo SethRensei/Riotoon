@@ -8,8 +8,6 @@ CREATE TABLE IF NOT EXISTS `genre` (
     CONSTRAINT `pk_genre` PRIMARY KEY (`id`)
 )
 
-TRUNCATE TABLE `genre`;
-
 CREATE TABLE IF NOT EXISTS `webtoon` (
     `id` INT AUTO_INCREMENT,
     `title` VARCHAR(150) NOT NULL,
@@ -21,8 +19,6 @@ CREATE TABLE IF NOT EXISTS `webtoon` (
     `modified_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT `pk_web` PRIMARY KEY (`id`)
 )
-
-TRUNCATE TABLE `webtoon`;
 
 CREATE TABLE IF NOT EXISTS `webtoon_genres` (
     `id` INT AUTO_INCREMENT,
@@ -39,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `webtoon_genres` (
         ON UPDATE RESTRICT
 )
 
-CREATE TABLE IF NOT EXISTS chapter(
+CREATE TABLE IF NOT EXISTS `chapter`(
     `id` INT AUTO_INCREMENT,
     `ch_num` VARCHAR(50) NOT NULL,
     `ch_path` VARCHAR(255) NOT NULL,
@@ -51,6 +47,19 @@ CREATE TABLE IF NOT EXISTS chapter(
         ON DELETE CASCADE
         ON UPDATE RESTRICT
 )
+
+CREATE TABLE IF NOT EXISTS `user` (
+    `id` INT AUTO_INCREMENT,
+    `pseudo` VARCHAR(50) NOT NULL UNIQUE,
+    `fullname` VARCHAR(200) NOT NULL,
+    `email` VARCHAR(180) NOT NULL UNIQUE,
+    `roles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`roles`)),
+    `password` VARCHAR(255) NOT NULL,
+    `confir_key` INT NOT NULL,
+    `is_verified` tinyint(1) NOT NULL,
+    `modified_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT `pk_user` PRIMARY KEY(`id`)
+);
 
 INSERT INTO `genre` (`label`)
 VALUES ('Action'),

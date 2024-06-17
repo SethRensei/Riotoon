@@ -27,7 +27,7 @@ if (isset($_POST['search'])) {
 }
 
 ?>
-
+<?php if (!isset($navbar)) : ?>
 <header>
     <div class="header-1">
 
@@ -55,15 +55,21 @@ if (isset($_POST['search'])) {
 
         <nav class="nav_bar">
             <ul>
-                <li><a href="<?= $router->url('home') ?>">Accueil</a></li>
-                <li><a href="">S'incrire</a></li>
-                <li><button>Connexion</button></li>
-                <li>
-                    <form method="post" action="">
-                        <button type="submit">Deconnexion</button>
-                    </form>
-                </li>
+                <li><a href="<?= $router->url('home') ?>"><i class="fas fa-home"></i> Accueil</a></li>
+                <?php if (!isset($_SESSION['User'])): ?>
+                    <li><a href="<?= $router->url('signup')?>"><i class="fas fa-user-plus"></i> S'incrire</a></li>
+                    <li><button><i class="fa-solid fa-right-to-bracket"></i> Connexion</button></li>
+                <?php endif ?>
+                <?php if (isset($_SESSION['User'])): ?>
+                    <li><a href=""><i class="fas fa-user"></i> Profil</a></li>
+                    <li>
+                        <form method="post" action="<?= $router->url('logout') ?>">
+                            <button type="submit">Deconnexion</button>
+                        </form>
+                    </li>
+                <?php endif ?>
             </ul>
         </nav>
     </div>
 </header>
+<?php endif ?>

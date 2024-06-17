@@ -23,8 +23,7 @@ $is_title = goodURL($webtoon->getTitle());
 // Vérification sur le paramètre title de l'url sur la correspondance avec la base de données
 if ($is_title !== $title) {
     $url = $router->url('show-webt', ['title' => $is_title, 'id' => $webtoon->getId()]);
-    http_response_code(301);
-    header('Location: ' . $url);
+    header('Location: ' . $url, true, 308);
 }
 
 /** @var Chapter|false */
@@ -37,14 +36,15 @@ if ($chapter === false) {
 $chapters = $r_chapter->findWebtoon($webtoon->getId());
 
 $web_title = unClean($webtoon->getTitle());
-$pg_title = $web_title . ' | RioToon';
-$pg_desc = 'Lisez ' . $web_title . '_' . $chapter->getChNum() . ' sur RioToon';
 
 $imgs = comicReader('../public/' . $chapter->getChPath());
 
 $firsr_chap = (int) str_replace('Ch-', '', end($chapters)->getChNum());
 $last_chap = (int) str_replace('Ch-', '', $chapters[0]->getChNum());
 $url_chap = (int) str_replace('Ch-', '', $chap_num);
+
+$pg_title = $web_title . ' Chapitre ' . $url_chap . ' | RioToon';
+$pg_desc = 'Lisez ' . $web_title . ' ' . $chapter->getChNum() . ' sur RioToon';
 ?>
 
 <div class="page-content user-select-none">

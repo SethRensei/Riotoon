@@ -2,8 +2,6 @@
 
 namespace Riotoon;
 
-use Symfony\Component\Dotenv\Dotenv;
-
 class DbConnexion {
 
     /**
@@ -12,9 +10,6 @@ class DbConnexion {
      */
     public static function connection(): \PDO
     {
-        // Chargement des variables d'environnement depuis le fichier .env
-        $dotenv = new Dotenv();
-        $dotenv->load(dirname(__DIR__) . '/.env');
         // Récupérer les détails de connexion à la base de données à partir des variables d'environnement
         $host = $_ENV['DB_HOST'];
         $name = $_ENV['DB_NAME'];

@@ -26,6 +26,8 @@ if ($is_title !== $title) {
     header('Location: ' . $url);
 }
 
+$pg_title = unClean($webtoon->getTitle()) . ' | RioToon';
+
 /** @var Chapter|null */
 $chapters = $r_chapter->findWebtoon($webtoon->getId());
 
