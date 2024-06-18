@@ -214,10 +214,19 @@ class User
      *
      * @return self
      */
-    public function UpdateConfirKey(): self
+    public function updateConfirKey(): self
     {
         $this->confir_key = mt_rand(100000, 999999);
 
         return $this;
+    }
+
+    /**
+     * Returns the roles of the user as decoded from JSON.
+     * @return array The roles of the user
+     */
+    public function getCollectionsRoles()
+    {
+        return (array)json_decode($this->roles);
     }
 }

@@ -14,7 +14,7 @@ class UserRepository extends User
     public function __construct()
     {
         $this->connection = DbConnexion::connection();
-        parent::UpdateConfirKey();
+        parent::updateConfirKey();
     }
 
     public function setPseudo(string $pseudo): User
@@ -70,6 +70,19 @@ class UserRepository extends User
             $query->closeCursor();
         } catch (\PDOException $e) {
             die("Verification du compte échouée : " . $e->getMessage());
+        }
+    }
+
+    public function editConfirKey(string $pseudo)
+    {
+        try {
+            $query = $this->connection->prepare("UPDATE user SET confir_key = :con, modified_at = CURRENT_TIMESTAMP WHERE pseudo = :pse");
+            $query->bindValue(':con', parent::getConfirKey());
+            $query->bindValue(':pse', $pseudo);
+            $query->execute();
+            $query->closeCursor();
+        } catch (\PDOException $e) {
+            die("Impossible de changer le clé de confirmation : " . $e->getMessage());
         }
     }
 

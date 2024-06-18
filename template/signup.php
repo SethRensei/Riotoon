@@ -23,7 +23,8 @@ if (isset($_POST['validate'])) {
         $message = "<h1 style='font-size: 33px;'>Bienvenue sur RioToon</h1>
             <h3 style='font-size: 29px;'>" . $fullname . " alias " . $_POST['pseudo'] . "</h3>
             <p style='font-size: 24px;'>Votre code de confirmation est : <strong>" . $repository->getConfirKey() .
-            "</strong></p>";
+            "</strong></p>
+            <p style='font-size: 18px;'>---------------<br>Ceci est un mail automatique, Merci de ne pas y répondre.</p>";
         $mail->send($_POST['email'], $fullname, 'Vérification du compte', $message);
         $errors = BuildErrors::getErrors();
         if(empty($errors)) {

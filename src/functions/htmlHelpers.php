@@ -2,7 +2,7 @@
 
 /**
  * Creates and generates an HTML message for displaying flash alerts.
- * @param string $type_alert The type of alert (e.g., "success", "info", "warning", "danger").
+ * @param string $type_alert The type of alert (e.g. "success", "primary", "warning", "danger").
  * @param string $message The message to be displayed in the alert.
  * @return string The HTML code for the flash alert message.
  */

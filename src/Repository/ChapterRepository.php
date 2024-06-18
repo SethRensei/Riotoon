@@ -49,8 +49,8 @@ class ChapterRepository extends Chapter
     public function edit($id)
     {
         try {
-            $query = $this->connection->prepare("UPDATE chapter SET ch_num = :num, ch_path = :pat, webtoon = :web
-            WHERE id = :id");
+            $query = $this->connection->prepare("UPDATE chapter SET ch_path = :pat, modified_at = CURRENT_TIMESTAMP
+            WHERE id = :id AND webtoon = :web AND ch_num = :num");
             $query->bindValue(':num', parent::getChNum());
             $query->bindValue(':pat', parent::getChPath());
             $query->bindValue(':web', parent::getWebtoon());

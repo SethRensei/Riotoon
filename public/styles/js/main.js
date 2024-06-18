@@ -4,6 +4,9 @@ $(document).ready(() => {
     });
 
     //TRAITEMENT SUR LA BAR DE RECHERCHE DYNAMIQUE
+    $('.s form').submit(function (e) {
+        e.preventDefault();
+    });
     $("#search").keyup(function () {
         let search = $(this).val();
         search = $.trim(search);
@@ -87,5 +90,20 @@ $(document).ready(() => {
                     .show()
                     .text("Avoir au moins une lettre");
         } else $(".r-error").hide();
+    });
+
+    //TRAITEMENT SUR L'AFFICHAGE DE LA PAGE DE CONNEXION
+    const wrapper = $(".wrapper");
+    const login = $(".btn-login");
+    const icon_close = $(".icon-close");
+    const links = $(".header-2 .nav_bar ul li a");
+    login.click(function () {
+        wrapper.toggleClass("active-popup");
+    });
+    icon_close.click(function () {
+        wrapper.removeClass("active-popup");
+    });
+    links.click(function () {
+        wrapper.removeClass("active-popup");
     });
 });

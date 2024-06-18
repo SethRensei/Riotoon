@@ -41,7 +41,8 @@ class WebtoonRepository extends Webtoon
     public function edit($id)
     {
         try {
-            $query = $this->connection->prepare("UPDATE webtoon SET title = :tit, author = :aut, synopsis = :syn, cover = :cov, release_year = :rel, status = :sta
+            $query = $this->connection->prepare("UPDATE webtoon SET title = :tit, author = :aut, synopsis = :syn, cover = :cov,
+            release_year = :rel, status = :sta, modified_at = CURRENT_TIMESTAMP
             WHERE id = :id");
             $query->bindValue(':tit', parent::getTitle());
             $query->bindValue(':aut', parent::getAuthor());

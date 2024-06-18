@@ -630,3 +630,142 @@ div.error-verif {
     padding: 10px;
 }
 /* END FOR VERIFYACCOUNT */
+
+/* START STYLE POUR LA PAGE DE CONNEXION  */
+
+.wrapper {
+    position: fixed;
+    top: 65px;
+    z-index: 30;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.wrapper .content-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.wrapper.active-popup {
+    display: block;
+}
+
+.wrapper .form-box {
+    position: relative;
+    width: 380px;
+    height: 420px;
+    background-color: #1c1c1c;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 45;
+    padding: 11px 5px 10px;
+}
+
+.wrapper .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: var(--col-blue2);
+    color: var(--col-red);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 8px;
+    cursor: pointer;
+    font-size: 2rem;
+    z-index: 1;
+}
+
+.form-box h2 {
+    font-size: 2em;
+    color: var(--col-blue2);
+    text-align: center;
+    margin: 10px 0 50px 0;
+}
+
+.form-box .input-box {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    margin: 15px 0 11px 13px;
+}
+
+.form-box .input-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    padding: 1rem 0;
+    font-size: 1.2rem;
+}
+
+.form-box .input-box i {
+    margin-right: 11px;
+    color: var(--col-blue2);
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 3px;
+}
+
+.form-box .input-box .bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: white;
+    width: 100%;
+    height: 1px;
+}
+
+.form-box .input-box .bar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: var(--col-blue2);
+    width: 100%;
+    height: 2px;
+    transform: scale(0);
+    transform-origin: left;
+    transition: transform .5s;
+}
+
+.form-box .input-box input:focus+.bar::after {
+    transform: scale(1);
+}
+
+.form-box .input-box .view i {
+    color: black;
+}
+
+.form-box .input-box .view i:hover {
+    color: var(--col-yellow1);
+}
+
+.form-box .check-captcha {
+    margin-left: 10px;
+}
+
+.form-box .btn {
+    border: none;
+    outline: none;
+    padding: 11px 25px;
+    background: var(--col-blue2);
+    width: 172px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-align: center;
+    margin: 15px 0 0 20px;
+}
+
+.form-box .btn:hover {
+    background: var(--col-green);
+}
+
+/* END STYLE POUR LA PAGE DE CONNEXION  */

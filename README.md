@@ -12,7 +12,7 @@ Quelques fonctionnalités à implémenter:
 - [x] CRUD sur les chapitres
 - [x] Système d'inscription
 - [x] Validation d'inscription par email
-- [ ] Système de connexion (authentification)
+- [x] Système de connexion (authentification)
 - [ ] Système de like et dislike
 - [ ] Système de commentaire
 - [ ] Zone utilisateur (profil)
