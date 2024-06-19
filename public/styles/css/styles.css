@@ -312,6 +312,36 @@ a {
     color: var(--col-blue1);
 }
 
+div.rio-v {
+    display: flex;
+    justify-content: space-between;
+}
+
+div.votes button {
+    margin: 0 12px;
+    border: none;
+    font-size: 1.22rem;
+    cursor: pointer;
+    background-color: transparent;
+    transition: color .4s;
+}
+
+div.votes button span.rio-m-9 {
+    margin-right: 9px;
+    font-weight: 500;
+    font-style: italic;
+}
+
+div.votes button.like i:hover,
+.is-like .like i {
+    color: var(--col-green0);
+}
+
+div.votes button.dislike i:hover,
+.is-dislike .dislike i {
+    color: var(--col-red);
+}
+
 @media screen and (max-width: 995px) {
     .one-webt {
         padding: 10px;

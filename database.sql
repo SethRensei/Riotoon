@@ -61,6 +61,28 @@ CREATE TABLE IF NOT EXISTS `user` (
     CONSTRAINT `pk_user` PRIMARY KEY(`id`)
 );
 
+CREATE TABLE IF NOT EXISTS `votes`(
+    `id` INT AUTO_INCREMENT,
+    `webtoon` INT NOT NULL,
+    `user` INT NOT NULL,
+    `vote` INT NOT NULL,
+    CONSTRAINT `pk_vote` PRIMARY KEY(`id`),
+    CONSTRAINT `fk_web_vote`
+        Foreign Key (`webtoon`) REFERENCES `webtoon` (`id`)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT,
+    CONSTRAINT `fk_user_vote`
+        Foreign Key (`user`) REFERENCES `user` (`id`)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT
+);
+
+DROP TABLE votes;
+
+ALTER TABLE `webtoon`
+    ADD COLUMN `likes` INT DEFAULT 0,
+    ADD COLUMN `dislikes` INT DEFAULT 0;
+
 INSERT INTO `genre` (`label`)
 VALUES ('Action'),
     ('Adulte'),

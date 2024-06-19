@@ -13,7 +13,7 @@ Quelques fonctionnalités à implémenter:
 - [x] Système d'inscription
 - [x] Validation d'inscription par email
 - [x] Système de connexion (authentification)
-- [ ] Système de like et dislike
+- [x] Système de like et dislike
 - [ ] Système de commentaire
 - [ ] Zone utilisateur (profil)
 - [ ] Zone administrateur

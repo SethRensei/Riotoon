@@ -15,6 +15,8 @@ class Webtoon
     private $modified_at;
     private $id_genres;
     private $genres;
+    private ?int $likes;
+    private ?int $dislikes;
     
 
     /**
@@ -203,5 +205,53 @@ class Webtoon
     public function getIdGenres()
     {
         return explode(',', $this->id_genres);
+    }
+
+    /**
+     * Get the value of likes
+     *
+     * @return int|null
+     */
+    public function getLikes(): ?int
+    {
+        return $this->likes;
+    }
+
+    /**
+     * Set the value of likes
+     *
+     * @param ?int $likes
+     *
+     * @return self
+     */
+    public function setLikes(int $likes): self
+    {
+        $this->likes = $likes;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of dislikes
+     *
+     * @return int|null
+     */
+    public function getDislikes(): ?int
+    {
+        return $this->dislikes;
+    }
+
+    /**
+     * Set the value of dislikes
+     *
+     * @param int $dislikes
+     *
+     * @return self
+     */
+    public function setDislikes(int $dislikes): self
+    {
+        $this->dislikes = $dislikes;
+
+        return $this;
     }
 }

@@ -3,7 +3,7 @@ $(document).ready(() => {
         $('div.alert-dismissible').fadeOut();
     });
 
-    //TRAITEMENT SUR LA BAR DE RECHERCHE DYNAMIQUE
+    // TRAITEMENT SUR LA BAR DE RECHERCHE DYNAMIQUE
     $('.s form').submit(function (e) {
         e.preventDefault();
     });
@@ -49,7 +49,7 @@ $(document).ready(() => {
         $("html, body").animate({ scrollTop: 0 }, 500);
     });
 
-    //TRAITEMENT SUR L'AFFICHAGE DU MOT DE PASSE
+    // TRAITEMENT SUR L'AFFICHAGE DU MOT DE PASSE
     const eye_open = $(".view .fa-eye");
     const eye_slash = $(".view .fa-eye-slash");
     const mdp = $("#password");
@@ -92,7 +92,7 @@ $(document).ready(() => {
         } else $(".r-error").hide();
     });
 
-    //TRAITEMENT SUR L'AFFICHAGE DE LA PAGE DE CONNEXION
+    // TRAITEMENT SUR L'AFFICHAGE DE LA PAGE DE CONNEXION
     const wrapper = $(".wrapper");
     const login = $(".btn-login");
     const icon_close = $(".icon-close");
@@ -106,4 +106,36 @@ $(document).ready(() => {
     links.click(function () {
         wrapper.removeClass("active-popup");
     });
+
+    // TRAITEMENT SUR LE SYSTEME DES VOTES
+    let vote = $("#vote");
+    let url_vote = vote.data("ref");
+    $(".like", vote).click(function (e) {
+        e.preventDefault();
+        votes(1);
+    });
+    $(".dislike", vote).click(function (e) {
+        e.preventDefault();
+        votes(-1);
+    });
+
+    function votes(value) {
+        $.post(url_vote, {
+            id: vote.data("id"),
+            vote: value,
+        })
+            .done(function (data, textStatus, jqXHR) {
+                $("#like-count").text(data.likes);
+                $("#dislike-count").text(data.dislikes);
+                vote.removeClass("is-like is-dislike");
+                if (data.success) {
+                    if (value == 1) {
+                        vote.addClass("is-like");
+                    } else vote.addClass("is-dislike");
+                }
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+            });
+    }
 });
