@@ -139,7 +139,7 @@ $webtoons = $repository->findAll();
         <?php foreach ($webtoons as $webtoon): ?>
             <tr>
                 <td data-label="ID" translate="no">#<?= $webtoon->getId()?></td>
-                <td data-label="Titre" translate="no"><?= $webtoon->getTitle()?></td>
+                <td data-label="Titre" translate="no"><?= unClean($webtoon->getTitle())?></td>
                 <td data-label="Auteur"><?= excerpt($webtoon->getAuthor())?></td>
                 <td data-label="Statut"><?= $webtoon->getStatus() ?></td>
                 <td data-label="Genres"><?= excerpt($webtoon->getGenres(), 18)?></td>
