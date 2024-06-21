@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    $('button.btn-close').click(() => { 
+    $('button.btn-close').click(() => {
         $('div.alert-dismissible').fadeOut();
     });
 
@@ -23,10 +23,10 @@ $(document).ready(() => {
     $("html body").click(function () {
         $("#resultat").hide();
     });
-    
-    const nav_bar = $(".nav_bar");
-    const header2 = $(".header-2");
-    const menu = $("#menu");
+
+    const nav_bar = $(".nav_bar"),
+        header2 = $(".header-2"),
+        menu = $("#menu");
     $("#menu").click(function () {
         $(this).toggleClass("fa-times");
         nav_bar.toggleClass("nav-toggle");
@@ -50,9 +50,9 @@ $(document).ready(() => {
     });
 
     // TRAITEMENT SUR L'AFFICHAGE DU MOT DE PASSE
-    const eye_open = $(".view .fa-eye");
-    const eye_slash = $(".view .fa-eye-slash");
-    const mdp = $("#password");
+    const eye_open = $(".view .fa-eye"),
+        eye_slash = $(".view .fa-eye-slash"),
+        mdp = $("#password");
     eye_slash.click(function () {
         eye_open.show();
         eye_slash.hide();
@@ -93,10 +93,10 @@ $(document).ready(() => {
     });
 
     // TRAITEMENT SUR L'AFFICHAGE DE LA PAGE DE CONNEXION
-    const wrapper = $(".wrapper");
-    const login = $(".btn-login");
-    const icon_close = $(".icon-close");
-    const links = $(".header-2 .nav_bar ul li a");
+    const wrapper = $(".wrapper"),
+        login = $(".btn-login"),
+        icon_close = $(".icon-close"),
+        links = $(".header-2 .nav_bar ul li a");
     login.click(function () {
         wrapper.toggleClass("active-popup");
     });
@@ -138,4 +138,19 @@ $(document).ready(() => {
                 console.log(jqXHR);
             });
     }
+
+    /* ADMIN */
+    $('#sidebar-open').click(() => { 
+        $('.navigation').toggleClass('active');
+    });
+
+    const dark_light = $('#dark-light'),
+        body = $('body');
+    dark_light.click(() => {
+        body.toggleClass('dark');
+        if (body.hasClass('dark')) {
+            document.setI;
+            dark_light.attr('class', 'fas fa-moon');
+        } else dark_light.attr('class', 'fas fa-sun')
+    });
 });

@@ -22,7 +22,7 @@
         require_once '_partials/navbar.php';
     ?>
 
-    <div class="container-lg">
+    <div class="container-lg main">
         <?= $pg_content?>
     </div>
 
