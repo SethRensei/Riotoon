@@ -45,7 +45,7 @@
     <div class="navigation">
         <ul>
             <li>
-                <a href="#">
+                <a href="<?= $router->url('home-admin')?>" class="<?= isset($active) && $active == 'home' ? 'active' : ''?>">
                     <span class="icon">
                         <i class="fas fa-house-laptop"></i>
                     </span>
@@ -53,15 +53,15 @@
                 </a>
             </li>
             <li>
-                <a href="<?= $router->url('add-webt')?>">
+                <a href="<?= $router->url('add-webt')?>" class="<?= isset($active) && $active == 'add-webt' ? 'active' : '' ?>">
                     <span class="icon">
-                        <i class="fas fa-circle-plus"></i>
+                        <i class="fas fa-book-open-reader"></i>
                     </span>
                     <span class="title">Wetoon +</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="<?= $router->url('see-users')?>" class="<?= isset($active) && $active == 'users' ? 'active' : '' ?>">
                     <span class="icon">
                         <i class="fas fa-user"></i>
                     </span>

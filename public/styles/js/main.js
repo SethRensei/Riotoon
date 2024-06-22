@@ -149,8 +149,41 @@ $(document).ready(() => {
     dark_light.click(() => {
         body.toggleClass('dark');
         if (body.hasClass('dark')) {
+            setCookie('dark_theme', 'true', 365);
             document.setI;
             dark_light.attr('class', 'fas fa-moon');
-        } else dark_light.attr('class', 'fas fa-sun')
+        } else {
+            dark_light.attr('class', 'fas fa-sun');
+            setCookie('dark_theme', 'false', -2);
+        }
     });
+
+    const dark_theme = getCookie('dark_theme');
+    if (dark_theme == 'true') {
+        body.addClass('dark');
+        document.setI;
+        dark_light.attr('class', 'fas fa-moon');
+    } else {
+        body.removeClass('dark')
+        dark_light.attr('class', 'fas fa-sun')
+    };
+
+    function setCookie(name, value, days) {
+        const date = new Date();
+        date.setDate(date.getDate() + days);
+        document.cookie = `${name}=${encodeURIComponent(value)}; expires=${date.toUTCString()}; path=/`;
+    }
+    function getCookie(name) {
+        let cookies = document.cookie.split(';'); // Sépare les cookies en tableau
+        for (let i = 0; i < cookies.length; i++) {
+            let cookie = cookies[i].trim(); // Retire les espaces autour du cookie
+            // Vérifie si le cookie commence par le nom recherché
+            if (cookie.startsWith(name + '=')) {
+                // Récupère la valeur du cookie en enlevant le nom
+                return cookie.substring(name.length + 1);
+            }
+        }
+        // Si le cookie n'est pas trouvé, retourne null ou une valeur par défaut
+        return null;
+    }
 });

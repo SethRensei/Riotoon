@@ -227,6 +227,6 @@ class User
      */
     public function getCollectionsRoles()
     {
-        return (array)json_decode($this->roles);
+        return (array)json_decode(json_decode($this->roles));
     }
 }

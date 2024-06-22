@@ -25,6 +25,8 @@ $router->get('/', 'index', 'home')
     ->post('/logout-riotoon', 'logout', 'logout')
     // ADMIN
     ->get('/admin', 'admin/index', 'home-admin')
+    ->get('/admin/users', 'admin/user/index', 'see-users')
+    ->fallOver('/admin/user/[*:pseudo]', 'admin/user/editRoles', 'edit-user-admin')
     ->fallOver('/admin/add-webtoon', 'admin/webtoon/add', 'add-webt')
     ->fallOver('/admin/update-webtoon/[i:id]', 'admin/webtoon/edit', 'edit-webt')
     ->post('/admin/delete-webtoon/[i:id]', 'admin/webtoon/delete', 'del-webt')

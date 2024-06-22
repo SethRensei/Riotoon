@@ -107,4 +107,16 @@ class ChapterRepository extends Chapter
 
         return $this->items;
     }
+
+    public function findAll()
+    {
+        try {
+            $query = $this->connection->query("SELECT * FROM chapter");
+            $this->items = $query->fetchAll(\PDO::FETCH_CLASS, Chapter::class);
+        } catch (\PDOException $e) {
+            die("Impossible de récupérer les information : " . $e->getMessage());
+        }
+
+        return $this->items;
+    }
 }

@@ -61,7 +61,7 @@ $errors = BuildErrors::getErrors();
             <input type="file" name="file-zip" class="form-control">
         </div>
 
-        <div class="col-10 mb-5">
+        <div class="col-10 mb-2">
             <button type="submit" name="validate" class="btn btn-outline-primary btn-lg">Ajouter</button>
         </div>
     </form>

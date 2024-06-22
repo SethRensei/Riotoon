@@ -4,6 +4,7 @@ use Riotoon\Repository\{GenreRepository, WebtoonRepository};
 use Riotoon\Service\BuildErrors;
 
 $is_admin = true;
+$active = 'add-webt';
 $pg_title = 'Ajouter un webtoon | RioToon - Administration';
 
 $errors = [];

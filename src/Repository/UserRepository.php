@@ -59,6 +59,34 @@ class UserRepository extends User
         }
     }
 
+    public function edit($id)
+    {
+        try {
+            $query = $this->connection->prepare("UPDATE user SET fullname = :ful, roles = :rol, modified_at = CURRENT_TIMESTAMP
+            WHERE id = :id");
+            $query->bindValue(':ful', parent::getFullname());
+            $query->bindValue(':rol', parent::getRoles());
+            $query->bindValue(':id', $id);
+
+            $query->execute();
+            $query->closeCursor();
+        } catch (\PDOException $e) {
+            die("Une erreur est survenue lors de la mise à jour : " . $e->getMessage());
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $query = $this->connection->prepare('DELETE FROM user WHERE id = :id');
+            $query->bindValue(':id', clean($id));
+            $query->execute();
+            $query->closeCursor();
+        } catch (\PDOException $e) {
+            die("Une erreur est survenue lors de l'utilisateur : " . $e->getMessage());
+        }
+    }
+
     public function verify(string $pseudo)
     {
         try {
@@ -98,6 +126,18 @@ class UserRepository extends User
         } catch (\PDOException $e) {
             die("Impossible d'éxecuter la requête" . $e->getMessage());
         }
+        return $this->items;
+    }
+
+    public function findAll()
+    {
+        try {
+            $query = $this->connection->query("SELECT * FROM user");
+            $this->items = $query->fetchAll(\PDO::FETCH_CLASS, User::class);
+        } catch (\PDOException $e) {
+            die("Impossible de récupérer les information : " . $e->getMessage());
+        }
+
         return $this->items;
     }
 }
