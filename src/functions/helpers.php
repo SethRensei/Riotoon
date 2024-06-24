@@ -77,6 +77,18 @@ function comicReader(string $target)
     return $imgs;
 }
 
+function downloardComic(string $target, string $title)
+{
+    if (file_exists($target)) {
+        header('Content-Transfer-Encoding: binary');
+        header('Content-Disposition: attachment; filename="' . $title . '_' . basename($target) . '"');
+        header('Content-Length: ' . filesize($target));
+
+        readfile($target);
+        exit();
+    }
+}
+
 /**
  * Upload and validate a file.
  * @param mixed $file The file data (ex : $_FILES['image']).

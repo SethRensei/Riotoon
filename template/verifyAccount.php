@@ -22,10 +22,6 @@ $user = $repository->find($pseudo);
 
 if ($user === false)
     throw new Exception("Cet utilisateur n'existe pas");
-if ($user->getIsVerified() == 1) {
-    http_response_code(308);
-    header('Location:' . $router->url('home'));
-}
 
 $errors = [];
 if (isset($_POST['validate'])) {
@@ -33,13 +29,22 @@ if (isset($_POST['validate'])) {
         if (!preg_match('/^\d+$/', clean($_POST['verif'])))
             BuildErrors::setErrors('verif', 'Entrez uniquement des chiffres');
         if ($user->getConfirKey() === (int) clean($_POST['verif'])) {
-            $repository->verify($user->getPseudo());
-            $_SESSION['User'] = $user->getId();
-            $_SESSION['pseudo'] = $user->getPseudo();
-            $_SESSION['fullname'] = $user->getFullname();
-            $_SESSION['roles'] = $user->getCollectionsRoles();
+            if (isset($_SESSION['change_password'])) {
+                $repository->setPassword($_SESSION['new_password']);
+                $repository->editPassword($user->getPseudo());
+                $_SESSION = [];
+                session_destroy();
+                header('Location:' . $router->url('home') . '?pass_change=true');
+                exit;
+            } else {
+                $repository->verify($user->getPseudo());
+                $_SESSION['User'] = $user->getId();
+                $_SESSION['pseudo'] = $user->getPseudo();
+                $_SESSION['fullname'] = unClean($user->getFullname());
+                $_SESSION['roles'] = $user->getCollectionsRoles();
+                echo "<script>window.history.go(-2);</script>";
+            }
             $_SESSION['user_register'] = null;
-            echo "<script>window.history.go(-2);</script>";
         } else
             BuildErrors::setErrors('fail', 'Le code est incorrect');
     } else

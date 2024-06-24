@@ -37,7 +37,7 @@ if (isset($_POST['login'])) {
                 if ($user->getIsVerified() == 1) {
                     $_SESSION['User'] = $user->getId();
                     $_SESSION['pseudo'] = $user->getPseudo();
-                    $_SESSION['fullname'] = $user->getFullname();
+                    $_SESSION['fullname'] = unClean($user->getFullname());
                     $_SESSION['roles'] = $user->getCollectionsRoles();
                     echo "<script>window.history.back();</script>";
                 } else {
@@ -88,7 +88,7 @@ if (isset($_POST['login'])) {
                     <li><button class="btn-login"><i class="fa-solid fa-right-to-bracket"></i> Connexion</button></li>
                 <?php endif ?>
                 <?php if (isset($_SESSION['User'])): ?>
-                    <li><a href=""><i class="fas fa-user"></i> Profil</a></li>
+                    <li><a href="<?= $router->url('profile', ['pseudo' => goodURL($_SESSION['pseudo'])])?>"><i class="fas fa-user"></i> Profil</a></li>
                     <li>
                         <form method="post" action="<?= $router->url('logout') ?>">
                             <button type="submit">Deconnexion</button>

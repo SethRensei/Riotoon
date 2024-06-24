@@ -17,8 +17,9 @@ $router = new Router(dirname(__DIR__) . '/template');
 
 $router->get('/', 'index', 'home')
     ->get('/webtoon/[i:id]-[*:title]', 'post/show', 'show-webt')
-    ->get('/webtoon/read/[i:id]-[*:title]/[*:chapt]', 'post/read', 'read')
+    ->fallOver('/webtoon/read/[i:id]-[*:title]/[*:chapt]', 'post/read', 'read')
     ->get('/webtoon/genre/[i:id]-[*:label]', 'post/genre', 'genre')
+    ->fallOver('/profile/[*:pseudo]', 'profile', 'profile')
     ->post('/webtoon/votes', 'post/vote', 'vote')
     ->fallOver('/signup-riotoon', 'signup', 'signup')
     ->fallOver('/verify/[*:pseudo]', 'verifyAccount', 'verif')

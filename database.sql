@@ -83,6 +83,9 @@ ALTER TABLE `webtoon`
     ADD COLUMN `likes` INT DEFAULT 0,
     ADD COLUMN `dislikes` INT DEFAULT 0;
 
+ALTER TABLE `user`
+    ADD COLUMN `profile_picture` VARCHAR(255) NULL DEFAULT NULL;
+
 INSERT INTO `genre` (`label`)
 VALUES ('Action'),
     ('Adulte'),

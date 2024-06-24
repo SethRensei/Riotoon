@@ -12,6 +12,13 @@ $webtoons = $paginator->getData(Webtoon::class, 10, $page);
 ?>
 
 <div class="page-content">
+    <div class="container-md">
+        <?php if (isset($_GET['pass_change'])) {
+            echo messageFlash('success', "Vous avez été déconnecté automatiquement<br>Changement du mot de passe réussi !<br>Connectez-vous à nouveau !");
+            $_GET['pass_change'] = null;
+        }        
+        ?>
+    </div>
     <div class="webt-list">
         <?php foreach ($webtoons as $webtoon): ?>
             <a href="<?= $router->url('show-webt', ['id' => $webtoon->getId(), 'title' => goodURL($webtoon->getTitle())]) ?>">

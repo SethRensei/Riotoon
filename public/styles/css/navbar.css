@@ -606,3 +606,10 @@ body.dark {
     text-align: start;
     white-space: nowrap;
 }
+
+div.footer-admin {
+    height: 70px;
+    background-color: var(--white-color);
+    color: var(--black);
+    border-top: 1px solid var(--blue-color);
+}

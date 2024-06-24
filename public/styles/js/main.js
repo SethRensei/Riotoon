@@ -57,11 +57,15 @@ $(document).ready(() => {
         eye_open.show();
         eye_slash.hide();
         mdp.attr("type", "text");
+        $('#old-pass').attr("type", "text");
+        $('#new-pass').attr("type", "text");
     });
     eye_open.click(function () {
         eye_slash.show();
         eye_open.hide();
         mdp.attr("type", "password");
+        $('#old-pass').attr("type", "password");
+        $('#new-pass').attr("type", "password");
     });
 
     // REGLES DE VALIDATION DU MOT DE PASSE
@@ -83,8 +87,8 @@ $(document).ready(() => {
                             $(".r-error").hide();
                         } else
                             $(".r-error").show().text("Minimun 8 et maximun 30 caractères");
-                    } else $(".r-error").show().text("Avoir au moins un caratère spécial");
-                } else $(".r-error").show().text("Avoir au moins un chiffre");
+                    } else $(".r-error").show().text("Doit contenir au moins un caratère spécial");
+                } else $(".r-error").show().text("Doit contenir au moins un chiffre");
             } else
                 $(".r-error")
                     .show()

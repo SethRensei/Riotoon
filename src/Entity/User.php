@@ -14,6 +14,7 @@ class User
     private ?string $password;
     private ?int $confir_key;
     private ?int $is_verified = 0;
+    private ?string $profile_picture = null;
     private $modified_at;
 
     /**
@@ -228,5 +229,29 @@ class User
     public function getCollectionsRoles()
     {
         return (array)json_decode(json_decode($this->roles));
+    }
+
+    /**
+     * Get the value of profile_picture
+     *
+     * @return string|null
+     */
+    public function getProfilePicture(): ?string
+    {
+        return $this->profile_picture;
+    }
+
+    /**
+     * Set the value of profile_picture
+     *
+     * @param string $profile_picture
+     *
+     * @return self
+     */
+    public function setProfilePicture(string $profile_picture): self
+    {
+        $this->profile_picture = $profile_picture;
+
+        return $this;
     }
 }

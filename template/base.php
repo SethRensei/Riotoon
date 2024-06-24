@@ -27,8 +27,10 @@
     </div>
 
     <?php
-    if (isset($is_admin) && $is_admin == true)
+    if (isset($is_admin) && $is_admin == true) {
+        echo '</div>'; // Closing of the grid-container div
         require_once '_partials/footerAdmin.php';
+    }
     else
         require_once '_partials/footer.php';
     ?>

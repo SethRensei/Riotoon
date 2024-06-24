@@ -2,5 +2,5 @@
 
 $_SESSION = [];
 session_destroy();
-header('Location: ' . $_SERVER['HTTP_REFERER']);
+header('Location: ' . $router->url('home'));
 exit();

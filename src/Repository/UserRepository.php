@@ -87,6 +87,34 @@ class UserRepository extends User implements AbstractRepository
         }
     }
 
+    public function addProfilePicture($pseudo) {
+        try {
+            $query = $this->connection->prepare("UPDATE user SET profile_picture = :pro, modified_at = CURRENT_TIMESTAMP
+            WHERE pseudo = :pse");
+            $query->bindValue(':pro', parent::getProfilePicture());
+            $query->bindValue(':pse', $pseudo);
+
+            $query->execute();
+            $query->closeCursor();
+        } catch (\PDOException $e) {
+            die("Une erreur est survenue lors de l'ajout de la photo de profil : " . $e->getMessage());
+        }
+    }
+
+    public function editPassword($pseudo) {
+        try {
+            $query = $this->connection->prepare("UPDATE user SET password = :pas, modified_at = CURRENT_TIMESTAMP
+            WHERE pseudo = :pse");
+            $query->bindValue(':pas', parent::getPassword());
+            $query->bindValue(':pse', $pseudo);
+
+            $query->execute();
+            $query->closeCursor();
+        } catch (\PDOException $e) {
+            die("Une erreur est survenue lors du changement du mot de passe : " . $e->getMessage());
+        }
+    }
+
     public function verify(string $pseudo)
     {
         try {

@@ -45,6 +45,13 @@ $url_chap = (int) str_replace('Ch-', '', $chap_num);
 
 $pg_title = $web_title . ' Chapitre ' . $url_chap . ' | RioToon';
 $pg_desc = 'Lisez ' . $web_title . ' ' . $chapter->getChNum() . ' sur RioToon';
+
+if (isset($_POST['download'])) {
+    if (isset($_SESSION['User']))
+        downloardComic('../public/' . $chapter->getChPath(), replace($webtoon->getTitle()));
+    else
+        echo "<script>alert('Connexion obligatoire')</script>";
+}
 ?>
 
 <div class="page-content user-select-none">
