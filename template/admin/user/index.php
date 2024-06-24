@@ -32,6 +32,7 @@ $users = $repository->findAll();
             <th>Nom complet</th>
             <th>Rôles</th>
             <th>Email</th>
+            <th>Vérifié</th>
             <th colspan="2">Actions</th>
         </tr>
     </thead>
@@ -43,6 +44,7 @@ $users = $repository->findAll();
                 <td data-label="Nom"><?= excerpt($user->getFullname()) ?></td>
                 <td data-label="Rôles"><?= implode(', ', $user->getCollectionsRoles() )?></td>
                 <td data-label="Email"><?= $user->getEmail() ?></td>
+                <td data-label="Vérifé"><?= $user->getIsVerified() == 1 ? 'Oui' : 'Non' ?></td>
                 <td data-label="Modifier"><a href="<?= $router->url('edit-user-admin', ['pseudo' => $user->getPseudo()])?>"><i
                             id="edit" class="fas fa-solid fa-pencil"></i></a></td>
                 <td data-label="Supprimer">

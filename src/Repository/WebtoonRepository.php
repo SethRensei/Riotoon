@@ -5,7 +5,7 @@ namespace Riotoon\Repository;
 use Riotoon\DbConnexion;
 use Riotoon\Entity\Webtoon;
 
-class WebtoonRepository extends Webtoon
+class WebtoonRepository extends Webtoon implements AbstractRepository
 {
     private \PDO $connection;
 

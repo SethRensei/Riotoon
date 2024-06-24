@@ -6,7 +6,7 @@ use Riotoon\DbConnexion;
 use Riotoon\Entity\User;
 use Riotoon\Service\BuildErrors;
 
-class UserRepository extends User
+class UserRepository extends User implements AbstractRepository
 {
     private \PDO $connection;
     private $items;

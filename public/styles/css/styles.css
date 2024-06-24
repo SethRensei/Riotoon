@@ -9,6 +9,7 @@
 body {
     background-color: #333;
     color: antiquewhite;
+    user-select: none;
 }
 
 html,
@@ -39,6 +40,10 @@ a {
     flex-wrap: wrap;
     width: 100%;
     margin: 7px 0;
+}
+.webt-list h1 {
+    color: var(--col-blue2);
+    font-size: var(--font-h-x);
 }
 
 .list {
@@ -801,36 +806,36 @@ div.error-verif {
 /* END STYLE POUR LA PAGE DE CONNEXION  */
 
 /* ADMINISTRATIONS */
-table.table-responsive {
+table {
     width: 100%;
     border-collapse: collapse;
 }
 
-table.table-responsive th,
-table.table-responsive td {
+th,
+td {
     padding: 10px;
     text-align: left;
     border: 2px solid black;
 }
 
-table.table-responsive th {
+th {
     background-color: #342628;
     color: white;
 }
 
-table.table-responsive tr {
+tr {
     background-color: #c0c0c0;
 }
 
-table.table-responsive tr td a {
+tr td a {
     text-decoration: none;
 }
 
-table.table-responsive tr form {
+tr form {
     display: inline;
 }
 
-table.table-responsive tr:nth-child(odd) {
+tr:nth-child(odd) {
     background-color: #A3B4C8;
 }
 
@@ -876,7 +881,6 @@ table.table-responsive tr:nth-child(odd) {
 
     .table-responsive td::before {
         content: attr(data-label);
-        /*il récupére la valeur de l'attribut data-label*/
         position: absolute;
         top: 0;
         left: 0;

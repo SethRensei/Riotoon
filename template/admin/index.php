@@ -1,9 +1,7 @@
 <?php
 
 use Riotoon\Entity\Webtoon;
-use Riotoon\Repository\ChapterRepository;
-use Riotoon\Repository\UserRepository;
-use Riotoon\Repository\WebtoonRepository;
+use Riotoon\Repository\{ChapterRepository, GenreRepository, UserRepository, WebtoonRepository};
 
 $is_admin = true;
 $active = 'home';
@@ -13,6 +11,7 @@ $pg_title = "Page d'accueil | RioToon - Administration";
 $repository = new WebtoonRepository();
 $user = new UserRepository();
 $chapter = new ChapterRepository();
+$genre = new GenreRepository();
 
 /** @var Webtoon */
 $webtoons = $repository->findAll();
@@ -20,6 +19,7 @@ $webtoons = $repository->findAll();
 $webt_count = count($webtoons);
 $user_count = count($user->findAll());
 $chap_count = count($chapter->findAll());
+$genr_count = count($genre->findAll());
 
 ?>
 <form class="container mb-4" style="margin-top: 95px;">
@@ -59,11 +59,11 @@ $chap_count = count($chapter->findAll());
     </div>
     <div class="rio-card">
         <div>
-            <div class="numbers">$7,842</div>
-            <div class="card-name">Earning</div>
+            <div class="numbers"><?= $genr_count?></div>
+            <div class="card-name">Genres de webtoon</div>
         </div>
         <div class="icon-bx">
-            <ion-icon name="cash-outline"></ion-icon>
+            <i class="fas fa-layer-group"></i>
         </div>
     </div>
 </div>
@@ -92,7 +92,7 @@ $chap_count = count($chapter->findAll());
                 <td data-label="Titre" translate="no"><?= unClean($webtoon->getTitle())?></td>
                 <td data-label="Auteur"><?= excerpt($webtoon->getAuthor())?></td>
                 <td data-label="Statut"><?= $webtoon->getStatus() ?></td>
-                <td data-label="Genres"><?= $webtoon->getLikes() ?></td>
+                <td data-label="Likes"><?= $webtoon->getLikes() ?></td>
                 <td data-label="Sortie"><?= $webtoon->getReleaseYear() ?></td>
                 <td data-label="Action1"><a href="<?= $router->url('add-chap', ['id' => $webtoon->getId()]) ?>"><i
                             id="add" class="fas fa-sharp fa-solid fa-plus"></i></a></td>

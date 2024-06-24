@@ -39,7 +39,7 @@ $errors = BuildErrors::getErrors();
 ?>
 
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh">
-    <form class="border shadow p-3 rounded" method="post" enctype="multipart/form-data" style="width: 450px;">
+    <form class="border shadow p-3 rounded" method="post" style="width: 450px;">
         <h1 class="text-center p-3">Modifier le rôle</h1>
         <?php if (!empty($errors)): ?>
             <?php foreach ($errors as $err): ?>

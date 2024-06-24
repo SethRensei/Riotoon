@@ -36,7 +36,6 @@
         </div>
 
         <div class="navbar-content">
-            <i class="fas bi-grid"></i>
             <i class='fas fa-sun' id="dark-light"></i>
             <i class='fas fa-bell'></i>
             <img src="" alt="" class="profile" />
@@ -63,44 +62,27 @@
             <li>
                 <a href="<?= $router->url('see-users')?>" class="<?= isset($active) && $active == 'users' ? 'active' : '' ?>">
                     <span class="icon">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-user-group"></i>
                     </span>
                     <span class="title">Utilisateurs</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="<?= $router->url('see-genres')?>" class="<?= isset($active) && $active == 'genre' ? 'active' : '' ?>">
                     <span class="icon">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-layer-group"></i>
                     </span>
-                    <span class="title">Messages</span>
+                    <span class="title">Genres</span>
                 </a>
             </li>
             <li>
                 <a href="#">
                     <span class="icon">
-                        <i class="fas fa-home"></i>
+                        <i class="far fa-id-badge"></i>
                     </span>
-                    <span class="title">Help</span>
+                    <span class="title">Mon profil</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <span class="icon">
-                        <i class="fas fa-home"></i>
-                    </span>
-                    <span class="title">Settings</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon">
-                        <i class="fas fa-home"></i>
-                    </span>
-                    <span class="title">Password</span>
-                </a>
-            </li>
-
             <li>
                 <a href="<?= $router->url('logout') ?>">
                     <span class="icon">

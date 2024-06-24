@@ -16,5 +16,6 @@ Quelques fonctionnalités à implémenter:
 - [x] Système de like et dislike
 - [ ] Système de commentaire
 - [ ] Zone utilisateur (profil)
-- [ ] Zone administrateur
+- [x] Zone administrateur
+- [x] Fixture (fausses données utilisateur)
 - [ ] Sécurité

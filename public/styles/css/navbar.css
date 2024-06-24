@@ -530,6 +530,7 @@ body.dark {
     z-index: 99;
     transition: 0.5s;
     overflow: hidden;
+    opacity: 0.8;
 }
 
 .navigation.active {
@@ -542,6 +543,7 @@ body.dark {
     left: 0;
     width: 100%;
     padding: 0;
+    height: 100%;
 }
 
 .navigation ul li {
@@ -550,6 +552,11 @@ body.dark {
     list-style: none;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:last-child {
+    position: absolute;
+    bottom: 3px;
 }
 
 .navigation ul li:hover,

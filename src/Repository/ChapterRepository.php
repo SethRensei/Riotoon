@@ -6,7 +6,7 @@ use Riotoon\DbConnexion;
 use Riotoon\Entity\Chapter;
 use Riotoon\Service\BuildErrors;
 
-class ChapterRepository extends Chapter
+class ChapterRepository extends Chapter implements AbstractRepository
 {
     private \PDO $connection;
 
