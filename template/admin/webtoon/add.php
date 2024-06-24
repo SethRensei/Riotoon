@@ -26,7 +26,7 @@ if (isset($_POST['validate'], $_FILES['image']['name'])) {
         ->setSynopsis($_POST['synopsis']);
         $errors = BuildErrors::getErrors();
         //voir si l'image a bien été uploadé et qu'il n'y a plus d'erreurs
-        if (empty($errors and move_uploaded_file($_FILES['image']['tmp_name'], $path))) {
+        if (empty($errors) and move_uploaded_file($_FILES['image']['tmp_name'], $path)) {
             $id = $repository->add();
             foreach ($_POST['genres'] as $v)
                 $gen_repo->addWebtoonGenre($id, $v);

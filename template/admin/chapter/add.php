@@ -45,7 +45,7 @@ $errors = BuildErrors::getErrors();
     <form class="border shadow p-3 rounded" method="post" enctype="multipart/form-data" style="width: 450px;">
         <h1 class="text-center p-3">Ajouter un chapitre</h1>
         <?php if (isset($success) and $success === true): ?>
-            <?= messageFlash('success', 'Vous avez ajouté un webtoon') ?>
+            <?= messageFlash('success', 'Vous avez ajouté un chapitre') ?>
         <?php endif ?>
         <?php if (!empty($errors)): ?>
             <?php foreach ($errors as $err): ?>

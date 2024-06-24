@@ -58,3 +58,4 @@ $users = $repository->findAll();
         <?php endforeach ?>
     </tbody>
 </table>
+<?= tableStyle() ?>

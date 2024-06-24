@@ -73,6 +73,9 @@ $genr_count = count($genre->findAll());
 <?php if (isset($_GET['edit_webt'])): ?>
     <?= messageFlash('success', 'Modification du webtoon réussi') ?>
 <?php endif ?>
+<?php if (isset($_GET['del'])): ?>
+    <?= messageFlash('success', 'Suppression du webtoon réussi') ?>
+<?php endif ?>
 <table class="table-responsive">
     <thead>
         <tr>
@@ -108,3 +111,4 @@ $genr_count = count($genre->findAll());
         <?php endforeach ?>
     </tbody>
 </table>
+<?= tableStyle()?>

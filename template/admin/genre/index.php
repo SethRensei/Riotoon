@@ -19,7 +19,16 @@ $pg_title = "Tous les genres de Webtoon disponible | RioToon - Administration";
 
 <div style="margin-top: 95px; overflow-x:hidden;">
     <h1 style="font-size: var(--font-h-x);">Listes des genres de Webtoon <a href="<?= $router->url('add-genre')?>"><i class="fas fa-plus-circle"></i></a></h1>
-    <table class="table table-striped table-borderless mt-3">
+    <?php if (isset($_GET['success'])): ?>
+        <?= messageFlash('success', 'Vous avez ajouté une catégorie de webtoon') ?>
+    <?php endif ?>
+    <?php if (isset($_GET['modif'])): ?>
+        <?= messageFlash('success', 'Modification de la catégorie réussi') ?>
+    <?php endif ?>
+    <?php if (isset($_GET['del'])): ?>
+        <?= messageFlash('success', 'Suppression du genre webtoon réussi') ?>
+    <?php endif ?>
+    <table class="table table-hover mt-3">
         <thead>
             <tr class="table-dark">
                 <th>ID</th>
@@ -49,3 +58,4 @@ $pg_title = "Tous les genres de Webtoon disponible | RioToon - Administration";
         </tbody>
     </table>
 </div>
+<?= tableStyle() ?>
