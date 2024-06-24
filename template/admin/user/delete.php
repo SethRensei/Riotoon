@@ -3,13 +3,13 @@
 use Riotoon\Entity\User;
 use Riotoon\Repository\UserRepository;
 
-$id = (int) $params['id'];
+$pseudo = $params['pseudo'];
 $is_admin = true;
 
 $repository = new UserRepository();
 
 /** @var User|false */
-$user = $repository->find($id);
+$user = $repository->find($pseudo);
 
 $repository->delete($user->getId());
 

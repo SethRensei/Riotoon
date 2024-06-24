@@ -22,7 +22,10 @@ $users = $repository->findAll();
     <button class="btn btn-primary">Rechercher</button>
 </form>
 <?php if (isset($_GET['success']) and $_GET['success'] == true): ?>
-    <?= messageFlash('success', 'Modification du rôle reussi') ?>
+    <?= messageFlash('success', 'Modification du rôle réussi') ?>
+<?php endif ?>
+<?php if (isset($_GET['del']) and $_GET['del'] == true): ?>
+    <?= messageFlash('success', "Suppression de l'utilisateur réussi") ?>
 <?php endif ?>
 <table class="table-responsive">
     <thead>
@@ -48,7 +51,7 @@ $users = $repository->findAll();
                 <td data-label="Modifier"><a href="<?= $router->url('edit-user-admin', ['pseudo' => $user->getPseudo()])?>"><i
                             id="edit" class="fas fa-solid fa-pencil"></i></a></td>
                 <td data-label="Supprimer">
-                    <form action="<?= $router->url('del-webt', ['id' => $user->getId()]) ?>" method="post"
+                    <form action="<?= $router->url('del-user', ['pseudo' => $user->getPseudo()]) ?>" method="post"
                         onsubmit="return confirm('Voulez-vous vraiment éffectuer cette action ?')"><button type="submit"
                             style="border: none; background: transparent;"><i id="remove"
                                 class="fa-solid fa-trash-can"></i></button>
