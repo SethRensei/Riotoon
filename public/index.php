@@ -15,15 +15,16 @@ define('BASE_URL', dirname($_SERVER['SCRIPT_NAME']));
 
 $router = new Router(dirname(__DIR__) . '/template');
 
-$router->get('/', 'index', 'home')
-    ->get('/webtoon/[i:id]-[*:title]', 'post/show', 'show-webt')
+$router->fallOver('/', 'index', 'home')
+    ->fallOver('/webtoon/[i:id]-[*:title]', 'post/show', 'show-webt')
     ->fallOver('/webtoon/read/[i:id]-[*:title]/[*:chapt]', 'post/read', 'read')
-    ->get('/webtoon/genre/[i:id]-[*:label]', 'post/genre', 'genre')
+    ->fallOver('/webtoon/genre/[i:id]-[*:label]', 'post/genre', 'genre')
     ->fallOver('/profile/[*:pseudo]', 'profile', 'profile')
     ->post('/webtoon/votes', 'post/vote', 'vote')
     ->fallOver('/signup-riotoon', 'signup', 'signup')
     ->fallOver('/verify/[*:pseudo]', 'verifyAccount', 'verif')
     ->post('/logout-riotoon', 'logout', 'logout')
+    ->get('/error404', 'error404', 'error')
     // ADMIN
     ->get('/admin', 'admin/index', 'home-admin')
     ->fallOver('/admin/add-chapter/[i:id]', 'admin/chapter/add', 'add-chap')

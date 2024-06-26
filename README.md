@@ -20,4 +20,4 @@ Quelques fonctionnalités à implémenter:
 - [x] Zone utilisateur (profil)
 - [x] Zone administrateur
 - [x] Fixture (fausses données utilisateur)
-- [ ] Sécurité
+- [x] Sécurité

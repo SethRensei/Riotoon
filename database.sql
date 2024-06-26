@@ -16,6 +16,8 @@ CREATE TABLE IF NOT EXISTS `webtoon` (
     `cover` VARCHAR(255) NOT NULL,
     `release_year` YEAR NOT NULL,
     `status` ENUM('En cours', 'Terminé') NOT NULL,
+    `likes` INT DEFAULT 0,
+    `dislikes` INT DEFAULT 0,
     `modified_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT `pk_web` PRIMARY KEY (`id`)
 )
@@ -57,6 +59,7 @@ CREATE TABLE IF NOT EXISTS `user` (
     `password` VARCHAR(255) NOT NULL,
     `confir_key` INT NOT NULL,
     `is_verified` tinyint(1) NOT NULL,
+    `profile_picture` VARCHAR(255) NULL DEFAULT NULL,
     `modified_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT `pk_user` PRIMARY KEY(`id`)
 );
@@ -76,15 +79,6 @@ CREATE TABLE IF NOT EXISTS `votes`(
         ON DELETE CASCADE
         ON UPDATE RESTRICT
 );
-
-DROP TABLE votes;
-
-ALTER TABLE `webtoon`
-    ADD COLUMN `likes` INT DEFAULT 0,
-    ADD COLUMN `dislikes` INT DEFAULT 0;
-
-ALTER TABLE `user`
-    ADD COLUMN `profile_picture` VARCHAR(255) NULL DEFAULT NULL;
 
 INSERT INTO `genre` (`label`)
 VALUES ('Action'),

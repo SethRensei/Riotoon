@@ -1,3 +1,16 @@
+<?php
+
+use Riotoon\Repository\UserRepository;
+use Riotoon\Controller\{Auth, Security};
+
+Auth::check();
+if (!in_array('ROLE_ADMIN', $_SESSION['roles']))
+    throw new Security("Accès non autorisé");
+
+$admin_repos = new UserRepository();
+$admin = $admin_repos->find($_SESSION['pseudo']);
+
+?>
 <div class="grid-container">
     <nav class="navbar">
         <div class="logo-item">
@@ -38,13 +51,18 @@
         <div class="navbar-content">
             <i class='fas fa-sun' id="dark-light"></i>
             <i class='fas fa-bell'></i>
-            <img src="" alt="" class="profile" />
+            <?php if ($user->getProfilePicture() != null): ?>
+                <img src="<?= BASE_URL . $admin->getProfilePicture() ?>" class="profile" />
+            <?php else: ?>
+                <img src="<?= initialAvatar(unClean($_SESSION['fullname'])) ?>" class="profile" />
+            <?php endif ?>
         </div>
     </nav>
     <div class="navigation">
         <ul>
             <li>
-                <a href="<?= $router->url('home-admin')?>" class="<?= isset($active) && $active == 'home' ? 'active' : ''?>">
+                <a href="<?= $router->url('home-admin') ?>"
+                    class="<?= isset($active) && $active == 'home' ? 'active' : '' ?>">
                     <span class="icon">
                         <i class="fas fa-house-laptop"></i>
                     </span>
@@ -52,7 +70,8 @@
                 </a>
             </li>
             <li>
-                <a href="<?= $router->url('add-webt')?>" class="<?= isset($active) && $active == 'add-webt' ? 'active' : '' ?>">
+                <a href="<?= $router->url('add-webt') ?>"
+                    class="<?= isset($active) && $active == 'add-webt' ? 'active' : '' ?>">
                     <span class="icon">
                         <i class="fas fa-book-open-reader"></i>
                     </span>
@@ -60,7 +79,8 @@
                 </a>
             </li>
             <li>
-                <a href="<?= $router->url('see-users')?>" class="<?= isset($active) && $active == 'users' ? 'active' : '' ?>">
+                <a href="<?= $router->url('see-users') ?>"
+                    class="<?= isset($active) && $active == 'users' ? 'active' : '' ?>">
                     <span class="icon">
                         <i class="fas fa-user-group"></i>
                     </span>
@@ -68,7 +88,8 @@
                 </a>
             </li>
             <li>
-                <a href="<?= $router->url('see-genres')?>" class="<?= isset($active) && $active == 'genre' ? 'active' : '' ?>">
+                <a href="<?= $router->url('see-genres') ?>"
+                    class="<?= isset($active) && $active == 'genre' ? 'active' : '' ?>">
                     <span class="icon">
                         <i class="fas fa-layer-group"></i>
                     </span>
@@ -76,7 +97,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?= $router->url('profile', ['pseudo' => goodURL($_SESSION['pseudo'])])?>">
+                <a href="<?= $router->url('profile', ['pseudo' => goodURL($_SESSION['pseudo'])]) ?>">
                     <span class="icon">
                         <i class="far fa-id-badge"></i>
                     </span>
@@ -84,10 +105,14 @@
                 </a>
             </li>
             <li>
-                <a href="<?= $router->url('logout') ?>">
-                    <span class="icon">
-                        <i class="fas fa-right-from-bracket"></i>
-                    </span>
+                <a>
+                    <form method="post" action="<?= $router->url('logout') ?>">
+                        <button type="submit" style="background: transparent;">
+                            <span class="icon">
+                                <i class="fas fa-right-from-bracket"></i>
+                            </span>
+                        </button>
+                    </form>
                     <span class="title">Deconnexion</span>
                 </a>
             </li>

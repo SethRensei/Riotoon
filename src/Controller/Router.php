@@ -71,23 +71,28 @@ class Router
     public function run(): self
     {
         $match = $this->router->match();
-        $view = 'index'; // Vue par défaut, permet également de rester sur la page d'accueil pour des url inexistant
+        $router = $this;
+        // $view = 'index'; // Vue par défaut, permet également de rester sur la page d'accueil pour des url inexistant
         if(is_array($match)) {
             $view = $match['target'];
             $params = $match['params'];
-        }
+        } else
+            $view = 'error404';
 
-        $router = $this;
         $layout = 'base';
         try {
             ob_start();
             require $this->view_path . DIRECTORY_SEPARATOR . $view . '.php';
             $pg_content = ob_get_clean();
             require $this->view_path . DIRECTORY_SEPARATOR . $layout . '.php';
-        } catch (\Exception $e) {
-            echo '<p>' . $e->getMessage() . '</p>';
-            exit;
+        } catch (Security $security) {
+            $_SESSION['error401'] = $security->getMessage();
+            header('Location:' . $router->url('error'));
         }
+        catch (\Exception $e) {
+            $_SESSION['error404'] = $e->getMessage();
+            header('Location:' . $router->url('error'));
+        } 
 
         return $this;
     }

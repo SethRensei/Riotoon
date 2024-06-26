@@ -85,10 +85,13 @@ if (isset($_POST['login'])) {
                 <li><a href="<?= $router->url('home') ?>"><i class="fas fa-home"></i> Accueil</a></li>
                 <?php if (!isset($_SESSION['User'])): ?>
                     <li><a href="<?= $router->url('signup')?>"><i class="fas fa-user-plus"></i> S'incrire</a></li>
-                    <li><button class="btn-login"><i class="fa-solid fa-right-to-bracket"></i> Connexion</button></li>
+                    <li><button class="btn-login"><i class="fas fa-right-to-bracket"></i> Connexion</button></li>
                 <?php endif ?>
                 <?php if (isset($_SESSION['User'])): ?>
                     <li><a href="<?= $router->url('profile', ['pseudo' => goodURL($_SESSION['pseudo'])])?>"><i class="fas fa-user"></i> Profil</a></li>
+                    <?php if (in_array('ROLE_ADMIN', $_SESSION['roles'])): ?>
+                    <li><a href="<?= $router->url('home-admin')?>"><i class="fas fa-user-tie"></i></i> Admin</a></li>
+                    <?php endif; ?>
                     <li>
                         <form method="post" action="<?= $router->url('logout') ?>">
                             <button type="submit">Deconnexion</button>

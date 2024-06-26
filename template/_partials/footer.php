@@ -78,19 +78,10 @@ $genres = $repository->findAll();
     </div>
     <div class="copyright-area">
         <div class="container">
-            <div class="row">
-                <div class="col-xl-6 col-lg-6 text-center text-lg-left">
-                    <div class="copyright-text">
-                        <p><strong style="font-size: 23px;">&copy;</strong> Copyright <?= date('Y'); ?>, Tous droits
-                            réservés</p>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
-                    <div class="footer-menu">
-                        <ul>
-                            <li><a href="<?= $router->url('home') ?>">Accueil</a></li>
-                        </ul>
-                    </div>
+            <div class="text-center text-lg-left">
+                <div class="copyright-text">
+                    <p><strong style="font-size: 23px;">&copy;</strong> Copyright <?= date('Y'); ?>, Tous droits
+                        réservés</p>
                 </div>
             </div>
         </div>

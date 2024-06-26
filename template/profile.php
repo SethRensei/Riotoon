@@ -1,11 +1,14 @@
 <?php
 
 use Riotoon\Entity\User;
-use Riotoon\Repository\UserRepository;
-use Riotoon\Service\BuildErrors;
 use Riotoon\Service\Mailer;
+use Riotoon\Controller\Auth;
+use Riotoon\Service\BuildErrors;
+use Riotoon\Repository\UserRepository;
 
 $pseudo = $params['pseudo'];
+
+Auth::check();
 
 $repository = new UserRepository();
 $mail = new Mailer();
@@ -54,7 +57,7 @@ if (isset($_POST['change-fullname'], $_POST['fullname'])) {
 
 // Edit profile picture
 if (isset($_POST['add-picture'], $_FILES['image']['name'])) {
-    $name = replace($user->getPseudo());
+    $name = replace($user->getPseudo()) . rand(10, 550);
     $path = uploadFile($_FILES['image'], $name,'2097152', '../public/images/UserProfile/');
     $repository->setProfilePicture(str_replace('../public/', '', $path));
     $errors = BuildErrors::getErrors();
@@ -86,7 +89,7 @@ $errors = BuildErrors::getErrors();
                     <img src="<?= initialAvatar(unClean($user->getFullname()))?>" alt="man image">
                 <?php endif?>
                 <div class="con">
-                    <h1 class="mt-2"><?= excerpt(unClean($user->getFullname()))?></h1>
+                    <h1 class="mt-2"><?= excerpt(unClean($user->getFullname()), 16)?></h1>
                     <p><?= unClean($user->getPseudo())?></p>
                     <p><?= unClean($user->getEmail()) ?></p>
                 </div>
@@ -181,7 +184,7 @@ $errors = BuildErrors::getErrors();
         </div>
     </div>
     <div class="delete-account mt-5 d-grid justify-content-center mb-5">
-        <form action="" method="post"
+        <form action="<?= $router->url('del-user', ['pseudo' => $user->getPseudo()])?>" method="post"
             onsubmit="return confirm('Voulez-vous vraiment supprimer votre compte ?')">
             <button type="submit">Supprimer mon compte</button>
         </form>
