@@ -6,6 +6,8 @@ Commande pour installer les dépendances
 composer install
 ```
 
+Decommenter dans le fichier `php.ini` la ligne correspondant à `extension=gd`
+
 Quelques fonctionnalités à implémenter:
 - [x] Système de routage d'url
 - [x] CRUD sur les webtoons
@@ -15,7 +17,7 @@ Quelques fonctionnalités à implémenter:
 - [x] Système de connexion (authentification)
 - [x] Système de like et dislike
 - [ ] Système de commentaire
-- [ ] Zone utilisateur (profil)
+- [x] Zone utilisateur (profil)
 - [x] Zone administrateur
 - [x] Fixture (fausses données utilisateur)
 - [ ] Sécurité

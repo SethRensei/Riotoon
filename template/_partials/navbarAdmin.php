@@ -76,7 +76,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="<?= $router->url('profile', ['pseudo' => goodURL($_SESSION['pseudo'])])?>">
                     <span class="icon">
                         <i class="far fa-id-badge"></i>
                     </span>

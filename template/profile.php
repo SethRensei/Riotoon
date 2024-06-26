@@ -43,29 +43,48 @@ if (isset($_POST['change-password'], $_POST['old-pass'], $_POST['new-pass'])) {
 
 // Change the fullname
 if (isset($_POST['change-fullname'], $_POST['fullname'])) {
-    
+    $repository->setFullname($_POST['fullname'])
+        ->setRoles($user->getCollectionsRoles());
+    $errors = BuildErrors::getErrors();
+    if (empty($errors)) {
+        $repository->edit($user->getId());
+        $_POST = [];
+    }
 }
 
-// Add profile picture
+// Edit profile picture
 if (isset($_POST['add-picture'], $_FILES['image']['name'])) {
-    
+    $name = replace($user->getPseudo());
+    $path = uploadFile($_FILES['image'], $name,'2097152', '../public/images/UserProfile/');
+    $repository->setProfilePicture(str_replace('../public/', '', $path));
+    $errors = BuildErrors::getErrors();
+    if (file_exists('../public/' . $user->getProfilePicture()))
+        unlink('../public/' . $user->getProfilePicture());
+    if (empty($errors) and move_uploaded_file($_FILES['image']['tmp_name'], $path)) {
+        $repository->addProfilePicture($user->getPseudo());
+        $_POST = [];
+    }
 }
 
 $errors = BuildErrors::getErrors();
 ?>
 
 <div class="page-content">
-    <div class="container">
-        <?php if (!empty($errors)): ?>
+    <?php if (!empty($errors)): ?>
+        <div class="container">
             <?php foreach ($errors as $err): ?>
                 <?= messageFlash('warning', $err) ?>
             <?php endforeach ?>
-        <?php endif ?>
-    </div>
+        </div>
+    <?php endif ?>
     <div class="row ps-5 mt-3 d-flex flex-wrap g-4 align-items-center">
         <div class="col-xl-5 col-md-5">
             <div class="box">
-                <img src="https://cdn.pixabay.com/photo/2019/10/22/13/43/man-4568761_1280.jpg" alt="man image">
+                <?php if($user->getProfilePicture() != null): ?>
+                    <img src="<?= BASE_URL . $user->getProfilePicture()?>" alt="man image">
+                <?php else :?>
+                    <img src="<?= initialAvatar(unClean($user->getFullname()))?>" alt="man image">
+                <?php endif?>
                 <div class="con">
                     <h1 class="mt-2"><?= excerpt(unClean($user->getFullname()))?></h1>
                     <p><?= unClean($user->getPseudo())?></p>
@@ -145,18 +164,18 @@ $errors = BuildErrors::getErrors();
                         <input type="text" name="fullname" required>
                         <label>Votre nom complet</label>
                     </div>
-                    <button type="submit" name="change-fullname">Modifier</button>
+                    <button type="submit" name="change-fullname">Changer</button>
                 </form>
             </div>
         </div>
         <div class="col-xl-6 col-md-6">
             <div class="wrapper-profile">
                 <form method="post" class="form-profile" enctype="multipart/form-data">
-                    <h2>Ajouter une photo de profil</h2>
+                    <h2>Modifier mon avatar</h2>
                     <div class="input-field">
                         <input type="file" name="image" required>
                     </div>
-                    <button type="submit" name="add-picture">Ajouter</button>
+                    <button type="submit" name="add-picture">Modifier</button>
                 </form>
             </div>
         </div>

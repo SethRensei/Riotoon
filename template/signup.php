@@ -18,6 +18,7 @@ if (isset($_POST['validate'])) {
         $repository->setPseudo($_POST['pseudo'])
             ->setFullname($_POST['fullname'])
             ->setEmail($_POST['email'])
+            ->setRoles(['ROLE_USER'])
             ->setPassword($_POST['password'])
             ->setIsVerified(0);
         $message = "<h1 style='font-size: 33px;'>Bienvenue sur RioToon</h1>

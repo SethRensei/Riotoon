@@ -6,7 +6,8 @@
         "altorouter/altorouter": "^2.0",
         "symfony/var-dumper": "^7.1",
         "phpmailer/phpmailer": "^6.9",
-        "fakerphp/faker": "^1.23"
+        "fakerphp/faker": "^1.23",
+        "yohang88/letter-avatar": "^2.3"
     },
     "autoload": {
         "files": [

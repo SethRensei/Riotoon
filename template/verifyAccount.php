@@ -42,7 +42,7 @@ if (isset($_POST['validate'])) {
                 $_SESSION['pseudo'] = $user->getPseudo();
                 $_SESSION['fullname'] = unClean($user->getFullname());
                 $_SESSION['roles'] = $user->getCollectionsRoles();
-                echo "<script>window.history.go(-2);</script>";
+                echo "<script>window.history.go(-3);</script>";
             }
             $_SESSION['user_register'] = null;
         } else
