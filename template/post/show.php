@@ -7,11 +7,8 @@ use Riotoon\Repository\{ChapterRepository, VoteRepository, WebtoonRepository};
 $title = $params['title'];
 $id = (int) $params['id'];
 
-$repository = new WebtoonRepository();
-$r_chapter = new ChapterRepository();
-
 /** @var Webtoon|false */
-$webtoon = $repository->fetchOne("id", $id);
+$webtoon = (new WebtoonRepository())->fetchOne("id", $id);
 
 //Vérification sur le paramètre id de l'url pour un résultat faux
 if ($webtoon === false)
@@ -29,7 +26,7 @@ if ($is_title !== $title) {
 $pg_title = unClean($webtoon->getTitle()) . ' | RioToon';
 
 /** @var Chapter|null */
-$chapters = $r_chapter->findWebtoon($webtoon->getId());
+$chapters = (new ChapterRepository())->findWebtoon($webtoon->getId());
 
 $vote = false;
 $v = new VoteRepository();

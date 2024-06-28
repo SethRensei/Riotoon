@@ -7,11 +7,10 @@ $is_admin = true;
 $active = 'genre';
 
 $repository = new GenreRepository();
-$webt = new WebtoonRepository();
 
 /** @var Genre|null*/
 $genres = $repository->getAllGenresWithWebtoonCount();
-$webt_count = count($webt->findAll());
+$webt_count = count((new WebtoonRepository())->findAll());
 
 $pg_title = "Tous les genres de Webtoon disponible | RioToon - Administration";
 

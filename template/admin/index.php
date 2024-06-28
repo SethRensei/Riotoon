@@ -9,17 +9,14 @@ $active = 'home';
 $pg_title = "Page d'accueil | RioToon - Administration";
 
 $repository = new WebtoonRepository();
-$user = new UserRepository();
-$chapter = new ChapterRepository();
-$genre = new GenreRepository();
 
 /** @var Webtoon */
 $webtoons = $repository->findAll();
 
 $webt_count = count($webtoons);
-$user_count = count($user->findAll());
-$chap_count = count($chapter->findAll());
-$genr_count = count($genre->findAll());
+$user_count = count((new UserRepository())->findAll());
+$chap_count = count((new ChapterRepository())->findAll());
+$genr_count = count((new GenreRepository())->findAll());
 
 ?>
 <form class="container mb-4" style="margin-top: 95px;">
@@ -84,6 +81,7 @@ $genr_count = count($genre->findAll());
             <th>Auteur</th>
             <th>Statut</th>
             <th>Likes</th>
+            <th>Dislikes</th>
             <th>Sortie</th>
             <th colspan="3">Actions</th>
         </tr>
@@ -96,6 +94,7 @@ $genr_count = count($genre->findAll());
                 <td data-label="Auteur"><?= excerpt($webtoon->getAuthor())?></td>
                 <td data-label="Statut"><?= $webtoon->getStatus() ?></td>
                 <td data-label="Likes"><?= $webtoon->getLikes() ?></td>
+                <td data-label="Likes"><?= $webtoon->getDislikes() ?></td>
                 <td data-label="Sortie"><?= $webtoon->getReleaseYear() ?></td>
                 <td data-label="Action1"><a href="<?= $router->url('add-chap', ['id' => $webtoon->getId()]) ?>"><i
                             id="add" class="fas fa-sharp fa-solid fa-plus"></i></a></td>

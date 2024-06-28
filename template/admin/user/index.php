@@ -8,10 +8,8 @@ $active = 'users';
 
 $pg_title = "Les utilisateurs - Info | RioToon - Administration";
 
-$repository = new UserRepository();
-
 /** @var User */
-$users = $repository->findAll();
+$users = (new UserRepository())->findAll();
 
 ?>
 <form class="container mb-4" style="margin-top: 95px;">

@@ -7,8 +7,7 @@ Auth::check();
 if (!in_array('ROLE_ADMIN', $_SESSION['roles']))
     throw new Security("Accès non autorisé");
 
-$admin_repos = new UserRepository();
-$admin = $admin_repos->find($_SESSION['pseudo']);
+$admin = (new UserRepository())->find($_SESSION['pseudo']);
 
 ?>
 <div class="grid-container">
@@ -51,7 +50,7 @@ $admin = $admin_repos->find($_SESSION['pseudo']);
         <div class="navbar-content">
             <i class='fas fa-sun' id="dark-light"></i>
             <i class='fas fa-bell'></i>
-            <?php if ($user->getProfilePicture() != null): ?>
+            <?php if ($admin->getProfilePicture() != null): ?>
                 <img src="<?= BASE_URL . $admin->getProfilePicture() ?>" class="profile" />
             <?php else: ?>
                 <img src="<?= initialAvatar(unClean($_SESSION['fullname'])) ?>" class="profile" />

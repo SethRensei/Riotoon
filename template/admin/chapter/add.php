@@ -9,10 +9,9 @@ $id = (int) $params['id'];
 $is_admin = true;
 
 $repository = new ChapterRepository();
-$r_webt = new WebtoonRepository();
 
 /** @var Webtoon|false */
-$webtoon = $r_webt->fetchOne("id", $id);
+$webtoon = (new WebtoonRepository())->fetchOne("id", $id);
 
 if ($webtoon === false)
     throw new Exception("Aucun webtoon n'a été trouvé");

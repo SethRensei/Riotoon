@@ -8,11 +8,10 @@ $title = $params['title'];
 $id = (int) $params['id'];
 $chap_num = $params['chapt'];
 
-$repository = new WebtoonRepository();
-$r_chapter = new ChapterRepository();
+$repository = new ChapterRepository();
 
 /** @var Webtoon|false */
-$webtoon = $repository->fetchOne("id", $id);
+$webtoon = (new WebtoonRepository())->fetchOne("id", $id);
 
 // Vérification sur le paramètre id de l'url pour un résultat faux
 if ($webtoon === false)
@@ -27,13 +26,13 @@ if ($is_title !== $title) {
 }
 
 /** @var Chapter|false */
-$chapter = $r_chapter->fetchOne($chap_num, $webtoon->getId());
+$chapter = $repository->fetchOne($chap_num, $webtoon->getId());
 if ($chapter === false) {
     throw new Exception("Aucun chapitre trouvé");
 }
 
 /** @var Chapter|null */
-$chapters = $r_chapter->findWebtoon($webtoon->getId());
+$chapters = $repository->findWebtoon($webtoon->getId());
 
 $web_title = unClean($webtoon->getTitle());
 

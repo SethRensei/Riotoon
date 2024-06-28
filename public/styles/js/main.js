@@ -175,7 +175,7 @@ $(document).ready(() => {
     function setCookie(name, value, days) {
         const date = new Date();
         date.setDate(date.getDate() + days);
-        document.cookie = `${name}=${encodeURIComponent(value)}; expires=${date.toUTCString()}; path=/`;
+        document.cookie = `${name}=${encodeURIComponent(value)}; expires=${date.toUTCString()}; path=/admin`;
     }
     function getCookie(name) {
         let cookies = document.cookie.split(';'); // Sépare les cookies en tableau
