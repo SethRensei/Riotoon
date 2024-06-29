@@ -175,7 +175,7 @@ class Webtoon
      */
     public function setStatus(string $status): self
     {
-        $status = ucfirst(clean($status));
+        $status = ucfirst($status);
         if (!in_array($status, ['En cours', 'Terminé']))
             BuildErrors::setErrors('status', 'Le statut doit être **En cours** ou **Terminé**');
         $this->status = $status;

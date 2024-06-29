@@ -8,8 +8,10 @@ $pseudo = $params['pseudo'];
 $is_admin = true;
 $active = 'users';
 
+$repository = new UserRepository();
+
 /** @var User|false */
-$user = (new UserRepository())->find($pseudo);
+$user = $repository->find($pseudo);
 
 if ($user === false)
     throw new Exception("Aucun utilisateur n'a été trouvé sous le pseudo de : {$pseudo}");
