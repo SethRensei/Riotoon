@@ -20,6 +20,7 @@ if ($user === false)
     throw new Exception("Aucun utilisateur trouvé sous '$pseudo'");
 
 $errors = [];
+$url = $router->url('profile', ['pseudo' => goodURL($user->getPseudo())]);
 
 // Change the password
 if (isset($_POST['change-password'], $_POST['old-pass'], $_POST['new-pass'])) {
@@ -52,6 +53,7 @@ if (isset($_POST['change-fullname'], $_POST['fullname'])) {
     if (empty($errors)) {
         $repository->edit($user->getId());
         $_POST = [];
+        header('Location:' . $url);
     }
 }
 
@@ -61,11 +63,12 @@ if (isset($_POST['add-picture'], $_FILES['image']['name'])) {
     $path = uploadFile($_FILES['image'], $name,'2097152', '../public/images/UserProfile/');
     $repository->setProfilePicture(str_replace('../public/', '', $path));
     $errors = BuildErrors::getErrors();
-    if (file_exists('../public/' . $user->getProfilePicture()))
+    if ($user->getProfilePicture() !== null)
         unlink('../public/' . $user->getProfilePicture());
     if (empty($errors) and move_uploaded_file($_FILES['image']['tmp_name'], $path)) {
         $repository->addProfilePicture($user->getPseudo());
         $_POST = [];
+        header('Location:' . $url);
     }
 }
 

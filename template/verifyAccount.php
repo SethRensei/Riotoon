@@ -33,9 +33,8 @@ if (isset($_POST['validate'])) {
                 $repository->setPassword($_SESSION['new_password']);
                 $repository->editPassword($user->getPseudo());
                 $_SESSION = [];
-                session_destroy();
-                header('Location:' . $router->url('home') . '?pass_change=true');
-                exit;
+                $_SESSION['pass_change'] = 'Change Okay';
+                header('Location:' . $router->url('home'));
             } else {
                 $repository->verify($user->getPseudo());
                 $_SESSION['User'] = $user->getId();
