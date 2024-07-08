@@ -75,12 +75,12 @@ class ChapterRepository extends Chapter implements AbstractRepository
         }
     }
 
-    public function findWebtoon(int $id)
+    public function findWebtoon(int $webtoon)
     {
         try {
             $query = $this->connection->prepare("SELECT * FROM chapter
                     WHERE webtoon = :web ORDER BY ch_num DESC");
-            $query->bindValue(':web', clean($id));
+            $query->bindValue(':web', clean($webtoon));
             $query->execute();
             $this->items = $query->fetchAll(\PDO::FETCH_CLASS, Chapter::class);
         } catch (\PDOException $e) {

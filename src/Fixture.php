@@ -12,7 +12,7 @@ $repository = new UserRepository();
  in the DbConnexion file and not to use environment variables
  Example :
     $host = 'localhost';
-    $name = 'your name's database';
+    $name = 'riotoon';
     $user = 'root';
     $pass = 'your password';
 */

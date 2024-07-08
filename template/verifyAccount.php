@@ -60,7 +60,7 @@ if (isset($_POST['resend'])) {
     $mail->send($user->getEmail(), $user->getFullname(), 'Nouveau code de vérification', $message);
     $errors = BuildErrors::getErrors();
     if (empty($errors)) {
-        $repository->editConfirKey($user->getPseudo());
+        $repository->editConfigKey($user->getPseudo());
         $_SESSION['user_register'] = 'Le nouveau code a été envoyé';
     }
 }

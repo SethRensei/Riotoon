@@ -14,7 +14,12 @@ function clean($word): ?string
     return htmlentities(htmlspecialchars(stripslashes(trim($word))));
 }
 
-function unClean($word)
+/**
+ * Uncleans a string input
+ * @param mixed $word The string to be uncleaned
+ * @return string|null The uncleaned string, or null if input is null.
+ */
+function unClean($word): ?string
 {
     return html_entity_decode($word);
 }
@@ -78,7 +83,13 @@ function comicReader(string $target)
     return $imgs;
 }
 
-function downloardComic(string $target, string $title)
+/**
+ * Allows to download a comic
+ * @param string $target The path of the comic
+ * @param string $title The title of the file download
+ * @return void
+ */
+function downloadComic(string $target, string $title)
 {
     if (file_exists($target)) {
         header('Content-Transfer-Encoding: binary');

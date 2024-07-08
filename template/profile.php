@@ -22,6 +22,9 @@ if ($user === false)
 $errors = [];
 $url = $router->url('profile', ['pseudo' => goodURL($user->getPseudo())]);
 
+$count_like = $repository->getCountLike($user->getId())['user_count'];
+$count_dislike = $repository->getCountDislike($user->getId())['user_count'];
+
 // Change the password
 if (isset($_POST['change-password'], $_POST['old-pass'], $_POST['new-pass'])) {
     if (password_verify($_POST['old-pass'], $user->getPassword())) {
@@ -37,7 +40,7 @@ if (isset($_POST['change-password'], $_POST['old-pass'], $_POST['new-pass'])) {
                 "</strong></p>
             <p style='font-size: 18px;'>---------------<br>Ceci est un mail automatique, Merci de ne pas y répondre.</p>";
             $mail->send($user->getEmail(), unClean($user->getPseudo()), 'Modification du mot de passe', $message);
-            $repository->editConfirKey($user->getPseudo());
+            $repository->editConfigKey($user->getPseudo());
             header('Location:' . $router->url('verif', ['pseudo' => goodURL($user->getPseudo())]));
         } else
             BuildErrors::setErrors('same', 'Vous avez saisi le même mot de passe');
@@ -120,30 +123,19 @@ $errors = BuildErrors::getErrors();
         </div>
     </div>
     <div class="mt-5">
-        <style>
-            .card-box {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            @media (max-width: 480px) {
-                .card-box {
-                    grid-template-columns: repeat(1, 1fr);
-                }
-            }
-        </style>
         <div class="card-box p-3">
-            <!-- <div class="rio-card">
+            <div class="rio-card">
                 <div>
-                    <div class="numbers">5</div>
-                    <div class="card-name">Webtoons</div>
+                    <div class="numbers"><?= $count_dislike ?></div>
+                    <div class="card-name">Nombre de dislikes</div>
                 </div>
                 <div class="icon-bx">
                     <i class="fas fa-book-open-reader"></i>
                 </div>
-            </div> -->
+            </div>
             <div class="rio-card">
                 <div>
-                    <div class="numbers">4</div>
+                    <div class="numbers"><?= $count_like?></div>
                     <div class="card-name">Nombre de likes</div>
                 </div>
                 <div class="icon-bx">

@@ -47,7 +47,7 @@ $pg_desc = 'Lisez ' . $web_title . ' ' . $chapter->getChNum() . ' sur RioToon';
 
 if (isset($_POST['download'])) {
     if (isset($_SESSION['User']))
-        downloardComic('../public/' . $chapter->getChPath(), replace($webtoon->getTitle()));
+        downloadComic('../public/' . $chapter->getChPath(), replace($webtoon->getTitle()));
     else
         echo "<script>alert('Connexion obligatoire')</script>";
 }

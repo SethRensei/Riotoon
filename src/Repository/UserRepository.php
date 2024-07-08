@@ -129,7 +129,7 @@ class UserRepository extends User implements AbstractRepository
         }
     }
 
-    public function editConfirKey(string $pseudo)
+    public function editConfigKey(string $pseudo)
     {
         try {
             $query = $this->connection->prepare("UPDATE user SET confir_key = :con, modified_at = CURRENT_TIMESTAMP WHERE pseudo = :pse");
@@ -164,6 +164,34 @@ class UserRepository extends User implements AbstractRepository
             $this->items = $query->fetchAll(\PDO::FETCH_CLASS, User::class);
         } catch (\PDOException $e) {
             die("Impossible de récupérer les information : " . $e->getMessage());
+        }
+
+        return $this->items;
+    }
+
+    public function getCountLike($id) {
+        try {
+            $query = $this->connection->prepare("SELECT COUNT(user) as user_count FROM votes 
+                WHERE user= :id AND vote = 1");
+            $query->bindValue(":id", clean($id));
+            $query->execute();
+            $this->items = $query->fetch();
+        } catch (\PDOException $e) {
+            die("Impossible de récupérer le nombre total de likes : " . $e->getMessage());
+        }
+
+        return $this->items;
+    }
+
+    public function getCountDislike($id) {
+        try {
+            $query = $this->connection->prepare("SELECT COUNT(user) as user_count FROM votes 
+                WHERE user= :id AND vote = -1");
+            $query->bindValue(":id", clean($id));
+            $query->execute();
+            $this->items = $query->fetch();
+        } catch (\PDOException $e) {
+            die("Impossible de récupérer le nombre total de likes : " . $e->getMessage());
         }
 
         return $this->items;
