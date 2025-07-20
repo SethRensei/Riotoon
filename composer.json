@@ -1,0 +1,24 @@
+{
+    "name": "sethrensei/riotoon",
+    "description": "Riotoon your webtoon's reader",
+    "autoload": {
+        "psr-4": {
+            "Riotoon\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "SethRensei",
+            "email": "eddisethsita@proton.me"
+        }
+    ],
+    "require-dev": {
+        "symfony/var-dumper": "^7.3"
+    },
+    "require": {
+        "altorouter/altorouter": "^2.0",
+        "symfony/dotenv": "^7.3",
+        "yohang88/letter-avatar": "^2.3",
+        "phpmailer/phpmailer": "^6.10"
+    }
+}
