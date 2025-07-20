@@ -2,8 +2,8 @@
 
 ## 🔧 Basic features
 
-- [ ] In-house routing system
-- [ ] Home page
+- [x] In-house routing system
+- [x] Home page
 - [ ] Webtoon details page
 - [ ] Display of available chapters
 - [ ] Online chapter playback
@@ -34,10 +34,10 @@
 
 ## 🔍 User experience
 
-- [ ] Search bar (by title)
-- [ ] Genre/popularity filtering
-- [ ] Pagination of results
-- [ ] Dark mode
+- [ ] Search bar (by title and author)
+- [ ] Genre filtering
+- [ ] Pagination
+- [ ] Dark mode (Optionnal)
 
 ## ⚙️ Technical
 
@@ -53,9 +53,3 @@
 - [ ] Functional forms (login/signup/comment)
 - [ ] Error handling (404, invalid form, etc.)
 - [ ] Security (XSS, CSRF, SQL injection)
-
-## 🌐 Production startup
-
-- [ ] Configuration of
-
-Translated with DeepL.com (free version)
