@@ -1,0 +1,32 @@
+:root {
+    --bg-black1: #0B0C10;
+    --black: #0B0C10;
+    --bg-black2: #27292a;
+    --col-blue1: #45F3FF;
+    --col-blue2: #4DA19D;
+    --col-red: #CF1818;
+    --col-gray1: #AEB6BD;
+    --col-gray2: #878787;
+    --col-yellow1: #C7A003;
+    --col-green0: #21a44b;
+    --col-green: #61A476;
+    --white-color: #fff;
+    --blue: #2a2185;
+    --blue-color: #4070f4;
+    --grey-color: #707070;
+    --color-blue: #4DA19D;
+    --grey-color-light: #aaa;
+    /* FONT */
+    --font-h-x: 1.9em;
+    --font-h-m: 1.6em;
+    --font-h: 1.3em;
+    --font-p: 0.9em;
+}
+
+@media only screen and (min-width: 480px) {
+    :root {
+        --font-h-x: 7.3vmin;
+        --font-h-m: 4.25vmin;
+        --font-p: 2.4vmin;
+    }
+}

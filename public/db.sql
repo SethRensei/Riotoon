@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS category(
 CREATE TABLE webtoon(
     id INT AUTO_INCREMENT,
     title VARCHAR(200) NOT NULL,
-    autor VARCHAR(120) NOT NULL,
+    author VARCHAR(120) NOT NULL,
     synopsis TEXT NOT NULL,
     cover VARCHAR(255) NOT NULL,
     status ENUM('ONGOING', 'FINISHED', 'SUSPENDED') DEFAULT 'ONGOING',
@@ -43,3 +43,7 @@ CREATE TABLE IF NOT EXISTS web_cat(
     ON UPDATE RESTRICT
     ON DELETE CASCADE
 );
+
+-- INSERT DATA
+INSERT INTO category(label)
+VALUES ('Action'),('Adulte'),('Arts Martiaux'),('Aventure'),('Biographie'),('Combat'),('Comédie'),('Cyberpunk'),('Drame'),('Famille'),('Fantaisie'),('Guerre'),('Historique'),('Horreur'),('Isekai'),('Josei'),('Magie'),('Musique'),('Mystère'),('Politique'),('Post-apocalyptique'),('Psycho'),('Romance'),('Sc-Fi'),('School life'),('Seinen'),('Shojo'),('Shonen'),('Slice of Life'),('Sport'),('Steampunk'),('Surnaturel'),('Thriller'),('Tragédie'),('Webcomic');

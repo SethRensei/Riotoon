@@ -1,6 +1,6 @@
-*,
-::after,
-::before {
+@import url('./font-color.css');
+
+*, ::after, ::before {
     margin: 0;
     padding: 0;
     outline: none;

@@ -2,6 +2,9 @@
     "name": "sethrensei/riotoon",
     "description": "Riotoon your webtoon's reader",
     "autoload": {
+        "files": [
+            "src/Function/Helpers.php"
+        ],
         "psr-4": {
             "Riotoon\\": "src/"
         }

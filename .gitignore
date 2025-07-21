@@ -1,2 +1,5 @@
+/public/images/
+/public/styles/bootstrap/
+/public/styles/fontawesome/
 /vendor/
 .env.*
