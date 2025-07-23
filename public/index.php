@@ -15,6 +15,9 @@ define(constant_name: 'BASE_URL', value: dirname(path: $_SERVER['SCRIPT_NAME']))
 $router = new Router(dirname(__DIR__) ."/template");
 
 $router->route(uri: "/",view: "main/index", name: "home")
+    ->route(uri:"/webtoon/[i:id]-[*:title]",view:"main/show", name:"webt_show")
+
+    // ADMIN
     ->route(uri:"/admin",view:"admin/index", name:"admin_index", method:"GET")
     ->route(uri:"/admin/webtoon/new",view:"admin/webtoon/add", name:"webt_new", method:"GET|POST")
     ->route(uri:"/admin/webtoon/edit/[i:id]",view:"admin/webtoon/edit", name:"webt_edit", method:"GET|POST")

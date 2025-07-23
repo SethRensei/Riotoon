@@ -17,7 +17,7 @@ $webt_count = count($webtoons);
 $category_count = count((new CategoryRepository())->findAll());
 ?>
 
-<div class="col-md-10">
+<div class="col-md-12">
     <?php if (isset($_SESSION['success']) && $_SESSION['success'] == true) {
             echo messageFlash('success', $_SESSION['content']);
             unset($_SESSION['content'], $_SESSION['success']);
@@ -43,7 +43,7 @@ $category_count = count((new CategoryRepository())->findAll());
                 <td data-label="ID" translate="no">#<?= $webtoon->getId() ?></td>
                 <td data-label="Titre" translate="no"><?= unClean($webtoon->getTitle()) ?></td>
                 <td data-label="Auteur"><?= excerpt($webtoon->getAuthor()) ?></td>
-                <td data-label="Statut"><?= $webtoon->getStatus() ?></td>
+                <td data-label="Statut"><?= $webtoon->statusValid()[$webtoon->getStatus()] ?></td>
                 <td data-label="Likes"><?= $webtoon->getLikes() ?></td>
                 <td data-label="Likes"><?= $webtoon->getDislikes() ?></td>
                 <td data-label="Action1"><a href="#"><i id="add" class="fas fa-sharp fa-solid fa-plus"></i></a></td>

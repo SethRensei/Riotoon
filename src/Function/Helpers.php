@@ -87,3 +87,14 @@ function excerpt($content, int $limit = 15)
         return $content;
     return mb_substr($content, 0, $limit) . '...';
 }
+
+/**
+ * Generate a URL-friendly string from a given word by converting to lowercase, replacing special characters with dashes, and encoding.
+ * @param string $word The input word or string to generate a URL-friendly version of.
+ * @return string|null The URL-friendly string, or null if input is invalid.
+ */
+function goodURL(string $word): ?string
+{
+    $word = unClean($word);
+    return urlencode(strtolower(str_replace(chars(), '-', $word)));
+}

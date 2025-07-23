@@ -115,12 +115,13 @@ if (!empty($errors))
 <style>
     #grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, 150px);
+        grid-template-columns: repeat(auto-fill, 140px);
         grid-column-gap: 2rem;
         grid-row-gap: 8px;
         width: 100%;
         border: 1px solid black;
         font-size: 16px !important;
-        padding: 12px 0 12px 8px;
+        padding: 12px 0px;
+        justify-content: center;
     }
 </style>

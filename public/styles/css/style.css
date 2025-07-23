@@ -7,3 +7,416 @@
     border: none;
     box-sizing: border-box;
 }
+
+body {
+    background-color: #333;
+    color: antiquewhite;
+    user-select: none;
+    overflow-x: hidden;
+}
+
+html,
+body {
+    font-size: 16px;
+    word-wrap: break-word;
+    letter-spacing: 1.33px;
+}
+
+html a {
+    text-decoration: none;
+}
+
+.turbo-progress-bar {
+    visibility: hidden;
+}
+
+/* START STYLE FOR THE WEBTOON HOMEPAGE AND GALLERY */
+.page-content {
+    margin-top: 50px;
+    background-color: var(--bg-black2);
+    padding: 11px 0;
+    border-radius: 23px;
+    width: 100%;
+    z-index: 2;
+    position: relative;
+}
+
+.webt-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 7px 0;
+}
+
+.webt-list h1 {
+    color: var(--color-blue);
+    font-size: var(--font-h-x);
+}
+
+.list {
+    width: 13.2rem;
+    height: 328px;
+    background-color: black;
+    margin: 10px;
+    overflow: hidden;
+    border-radius: 25px;
+    padding-bottom: 5px;
+}
+
+.list .text {
+    padding: 10px 9px;
+    color: var(--col-blue1);
+    height: 50px;
+    text-align: center;
+}
+
+.list .text h4 {
+    font-size: 1.2rem !important;
+}
+
+.list .item .text2 {
+    color: var(--col-blue1);
+    height: 50px;
+    display: none;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.webt-list a {
+    font-size: 11px !important;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.webt-list .list:hover {
+    box-shadow: 0 10px 10px rgba(37, 163, 191, 0.8);
+    opacity: 0.7;
+}
+
+.list .item {
+    height: 278px;
+    flex-shrink: 0;
+}
+
+/* IMAGE SIZE FOR PAGE show(post folder) AND index */
+.list .item img,
+.webt-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.rio-paginated {
+    display: block;
+    margin-left: 35px;
+}
+
+/* PAGINATION START */
+
+[data-pagination] {
+    line-height: 1;
+    font-weight: 400;
+    display: flex;
+}
+
+[data-pagination] ul {
+    list-style-type: none;
+    padding: .5em;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+
+[data-pagination] ul li {
+    margin-right: 8px;
+    text-align: center;
+    position: relative;
+    font-size: 1.4rem;
+}
+
+[data-pagination] a {
+    text-decoration: none;
+}
+
+[data-pagination] ul li span {
+    color: white;
+}
+
+/* Disabled & Hidden Styles */
+[data-pagination] .disabled,
+[data-pagination] [hidden],
+[data-pagination] [disabled] {
+    opacity: .2;
+    pointer-events: none;
+}
+
+/* Rounded block styles */
+
+[data-pagination] .rounded-blocks li a,
+[data-pagination] .rounded-blocks li a:link,
+[data-pagination] .rounded-blocks li a:visited {
+    color: white;
+    display: block;
+    padding: 6px 3px;
+    border-radius: 50%;
+    background: var(--color-blue);
+    background: linear-gradient(180deg, var(--col-blue1), var(--color-blue));
+    width: 30px;
+    height: 30px;
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    transition: all 0.1s;
+}
+
+[data-pagination] .rounded-blocks li a:hover,
+[data-pagination] .rounded-blocks li.active a {
+    color: var(--bg-black1);
+    border-radius: 5px;
+    background: var(--color-blue);
+    background: linear-gradient(180deg, var(--color-blue), var(--col-blue1));
+}
+
+[data-pagination] .rounded-blocks li:first-of-type a,
+[data-pagination] .rounded-blocks li:last-of-type a {
+    width: auto;
+    border-radius: 25px 0 0 25px;
+    padding: 6px 25px 0 15px;
+    text-align: left;
+}
+
+[data-pagination] .rounded-blocks li:first-of-type a:before,
+[data-pagination] .rounded-blocks li:last-of-type a:before {
+    position: absolute;
+    content: "";
+    width: 46px;
+    height: 46px;
+    background: var(--bg-black2);
+    border-radius: 50%;
+    top: -3px;
+    right: -35px;
+}
+
+[data-pagination] .rounded-blocks li:last-of-type a {
+    border-radius: 0 25px 25px 0;
+    text-align: right;
+    padding: 6px 15px 0 20px;
+}
+
+[data-pagination] .rounded-blocks li:nth-last-of-type(2) {
+    z-index: 3;
+}
+
+[data-pagination] .rounded-blocks li:last-of-type a:before {
+    right: auto;
+    left: -35px;
+}
+
+@media (min-width: 350px) {
+    [data-pagination] {
+        font-size: 10pt;
+    }
+}
+
+@media (min-width: 500px) {
+    [data-pagination] {
+        font-size: 12pt;
+    }
+}
+
+@media (min-width: 700px) {
+    [data-pagination] {
+        font-size: 14pt;
+    }
+}
+
+@media (min-width: 900px) {
+    [data-pagination] {
+        font-size: 16pt;
+    }
+}
+
+
+/* PAGINATION END */
+
+@media screen and (max-width: 540px) {
+    .list {
+        width: 120px;
+        height: 174px;
+        border-radius: 0;
+    }
+
+    .list .text {
+        display: none;
+    }
+
+    .list .item .text2 {
+        display: block;
+        padding: 5px 0 0 0;
+    }
+
+    .list .item .text2 h4 {
+        font-size: 15px !important;
+    }
+
+    .list .item {
+        height: 125px;
+        border-radius: 10px;
+    }
+}
+
+/* END STYLE FOR THE WEBTOON HOMEPAGE AND GALLERY */
+
+/* START STYLE FOR SHOW PAGE */
+.one-webt {
+    color: white;
+    height: auto;
+    display: grid;
+    padding: 10px 50px;
+    grid-template-columns: repeat(auto-fill, 1fr);
+    /*on crée le nombre de colonne*/
+    justify-content: center;
+    align-content: space-around;
+    grid-column-gap: 30px;
+}
+
+.one-webt .webt-img {
+    margin-top: 60px;
+    border-radius: 50%;
+    width: 300px;
+    height: 450px;
+}
+
+.one-webt .webt-info h4,
+.read-title h1 {
+    font-size: 2rem !important;
+    margin-bottom: 41px;
+    color: var(--col-blue1);
+}
+
+.one-webt .webt-info {
+    grid-column: 2 / 4;
+}
+
+.one-webt .webt-info .synopsis {
+    text-align: justify;
+}
+
+.show-wrapper {
+    overflow: hidden;
+    transition: max-height 2.3s ease-in-out;
+    max-height: 200px;
+}
+
+.show-wrapper.expanded, .last-chapters .table-resp--web.expanded {
+    max-height: 4500px;
+}
+
+.see-more {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: color 2.5s;
+}
+
+.see-more:hover {
+    color: var(--col-blue1);
+}
+
+.last-chapters {
+    color: white;
+    padding: 30px;
+    margin: 16px 0;
+    font-size: 18px;
+}
+
+.last-chapters .table-resp--web {
+    max-height: 400px;
+    transition: max-height 1.3s ease-in-out;
+    overflow: hidden;
+    width: 90%;
+}
+
+.last-chapters .table-resp--web table tbody td a {
+    text-decoration: none;
+    color: var(--col-gray1);
+    position: relative;
+}
+
+.last-chapters .table-resp--web table tbody td a:hover,
+.links a,
+.lien a:hover {
+    color: var(--col-blue1);
+}
+
+.last-chapters .table-resp--web .table>:not(caption)>*>* {
+    background-color: transparent;
+}
+
+div.rio-v {
+    display: flex;
+    justify-content: space-between;
+}
+
+div.votes button {
+    margin: 0 12px;
+    border: none;
+    font-size: 1.22rem;
+    cursor: pointer;
+    background-color: transparent;
+    transition: color .4s;
+}
+
+div.votes button span.rio-m-9 {
+    margin-right: 9px;
+    font-weight: 500;
+    font-style: italic;
+}
+
+div.votes button.like i:hover,
+.is-like .like i {
+    color: var(--col-green0);
+}
+
+div.votes button.dislike i:hover,
+.is-dislike .dislike i {
+    color: var(--col-red);
+}
+
+@media screen and (max-width: 995px) {
+    .one-webt {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .one-webt .webt-img {
+        margin: 50px 0;
+    }
+
+    .one-webt .webt-info h4 {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 100%;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+
+}
+
+@media screen and (max-width: 416px) {
+    .one-webt .webt-img {
+        width: 200px;
+        height: 310px;
+    }
+
+    .one-webt .webt-info h4 {
+        font-size: 1.2rem !important;
+    }
+}
+
+/* END STYLE FOR SHOW PAGE */
