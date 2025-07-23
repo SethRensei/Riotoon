@@ -46,7 +46,7 @@ $category_count = count((new CategoryRepository())->findAll());
                 <td data-label="Statut"><?= $webtoon->statusValid()[$webtoon->getStatus()] ?></td>
                 <td data-label="Likes"><?= $webtoon->getLikes() ?></td>
                 <td data-label="Likes"><?= $webtoon->getDislikes() ?></td>
-                <td data-label="Action1"><a href="#"><i id="add" class="fas fa-sharp fa-solid fa-plus"></i></a></td>
+                <td data-label="Action1"><a href="<?= $router->url('chap_new', ['id' => $webtoon->getId()]) ?>"><i id="add" class="fas fa-sharp fa-solid fa-plus"></i></a></td>
                 <td data-label="Action2"><a href="<?= $router->url('webt_edit', ['id' => $webtoon->getId()]) ?>"><i
                             id="edit" class="fas fa-solid fa-pencil"></i></a></td>
                 <td data-label="Action3">

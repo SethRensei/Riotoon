@@ -98,3 +98,37 @@ function goodURL(string $word): ?string
     $word = unClean($word);
     return urlencode(strtolower(str_replace(chars(), '-', $word)));
 }
+
+/**
+ * Read a comic archive file (ZIP or CBZ) and extract image files as base64 encoded data URIs.
+ * @param string $target $target The path to the ZIP or CBZ archive containing comic images.
+ * @return array An array of base64 encoded image data URIs extracted from the ZIP archive.
+ */
+function comicReader(string $target)
+{
+
+    $zip = new ZipArchive();
+
+    // Vérification si l'ouverture à bien réussie
+    if ($zip->open($target) === true) {
+        $imgs = [];
+        // On parcourt l'ensemble des fichiers
+        for ($i = 0; $i < $zip->numFiles; $i++) {
+            $file_into = $zip->statIndex($i);
+            $filename = $file_into['name']; // Récupération du nom
+            $files[$i] = $filename;
+        }
+        sort($files); // On trie le tableau dans l'ordre croissant
+        for ($i = 0; $i < count($files); $i++) {
+            $file_extension = pathinfo($files[$i], PATHINFO_EXTENSION); // Récupération de l'extension
+            // Vérifie si c'est une image (JPEG, JPG, PNG, GIF)
+            if (in_array($file_extension, ['jpeg', 'jpg', 'png', 'gif'])) {
+                $imgs[$i] = "data:image/jpeg;base64," . base64_encode($zip->getFromName($files[$i])); // On encode pour la visibilité des images
+            }
+        }
+        $zip->close();
+    } else
+        echo "<script>console.log('Impossible d'ouvrir le fichier')</script>";
+
+    return $imgs;
+}

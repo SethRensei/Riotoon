@@ -4,8 +4,8 @@
 
 - [x] In-house routing system
 - [x] Home page
-- [ ] Webtoon details page
-- [ ] Display of available chapters
+- [x] Webtoon details page
+- [x] Display of available chapters
 - [ ] Online chapter playback
 - [ ] Download a chapter
 
@@ -27,8 +27,8 @@
 
 ## 📂 Content management (Admin)
 
-- [ ] Add webtoon series
-- [ ] Add chapters with image upload
+- [x] Add webtoon series
+- [x] Add chapters with image upload
 - [ ] Secure administration interface
 - [ ] Comment moderation
 

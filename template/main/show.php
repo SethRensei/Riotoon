@@ -1,6 +1,6 @@
 <?php
-use Riotoon\Entity\{Webtoon};
-use Riotoon\Repository\{WebtoonRepository};
+use Riotoon\Entity\{Chapter, Webtoon};
+use Riotoon\Repository\{ChapterRepository, WebtoonRepository};
 
 //Récupération des paramaètres dans l'url, id et le titre du scans
 $title = $params['title'];
@@ -24,6 +24,8 @@ if ($is_title !== $title) {
 }
 
 $pg_title = unClean($webtoon->getTitle()) . ' | RioToon';
+/** @var Chapter|null */
+$chapters = ChapterRepository::findWebtoon($webtoon->getId());
 ?>
 
 <div class="page-content">
@@ -67,6 +69,14 @@ $pg_title = unClean($webtoon->getTitle()) . ' | RioToon';
         <div id="table-wrapper" class="table-resp--web table-responsive">
             <table class="table table-web">
                 <tbody>
+                    <?php foreach ($chapters as $chapter): ?>
+                        <tr>
+                            <td class="ps-4">
+                                <a
+                                    href="<?= $router->url('read', ['id' => $webtoon->getId(), 'title' => $is_title, 'chapt' => $chapter->getNumber()]) ?>">Chapitre <?= $chapter->getNumber() ?></a>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
                 </tbody>
             </table>
         </div>

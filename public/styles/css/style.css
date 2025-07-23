@@ -420,3 +420,75 @@ div.votes button.dislike i:hover,
 }
 
 /* END STYLE FOR SHOW PAGE */
+
+/* START STYLE FOR READ PAGE */
+.read-title {
+    margin-top: 18px;
+    text-align: center;
+    width: 100%;
+}
+
+.links {
+    width: 100%;
+    padding: 10px 20px;
+    height: 90px;
+}
+
+.links a {
+    color: var(--col-gray1);
+    margin-left: 24px;
+    margin-right: 24px;
+    text-decoration: none;
+    font-size: 1.32rem;
+}
+
+.links a:hover {
+    color: var(--col-yellow1);
+}
+
+.links select {
+    width: auto;
+    height: 30px;
+    padding: 0 12px;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    color: black;
+    font-size: 1.23rem;
+    font-weight: 400;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.links form {
+    display: inline;
+}
+
+.links form button {
+    margin-left: 30px;
+    padding: 5px 9px;
+    border: none;
+    background-color: var(--col-red);
+    text-transform: uppercase;
+    word-spacing: 4px;
+}
+
+.links form button i {
+    margin-right: 8px;
+}
+
+.links form button:hover {
+    background-color: var(--col-green);
+}
+
+.read-webt {
+    margin-bottom: 38px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+}
+
+/* END STYLE FOR READ PAGE */
