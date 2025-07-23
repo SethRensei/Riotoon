@@ -17,6 +17,7 @@ $router = new Router(dirname(__DIR__) ."/template");
 $router->route(uri: "/",view: "main/index", name: "home")
     ->route(uri:"/webtoon/[i:id]-[*:title]",view:"main/show", name:"webt_show")
     ->route(uri:"/webtoon/read/AEDy6jL8[i:id]-[*:title]/Chapitre-[*:chapt]",view:"main/read", name:"read")
+    ->route(uri:"/webtoon/search",view:"main/search", name:"search")
 
     // ADMIN
     ->route(uri:"/admin",view:"admin/index", name:"admin_index", method:"GET")

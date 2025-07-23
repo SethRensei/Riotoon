@@ -28,22 +28,22 @@
 ## 📂 Content management (Admin)
 
 - [x] Add webtoon series
-- [x] Add chapters with image upload
+- [x] Add chapters with file (image) upload
 - [ ] Secure administration interface
 - [ ] Comment moderation
 
 ## 🔍 User experience
 
-- [ ] Search bar (by title and author)
+- [x] Search bar (by title and author)
 - [ ] Genre filtering
-- [ ] Pagination
+- [x] Pagination
 - [ ] Dark mode (Optionnal)
 
 ## ⚙️ Technical
 
-- [ ] Turbo/Stimulus integration
+- [x] Turbo/Stimulus integration
 - [ ] Partial reload via Turbo Stream
-- [ ] Flash messages (error/success)
+- [x] Flash messages (error/success)
 - [ ] Unit tests (if applicable)
 - [ ] Performance optimization (lazy-load, cache)
 

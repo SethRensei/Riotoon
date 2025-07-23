@@ -1,3 +1,275 @@
+header {
+    position: relative;
+    z-index: 20;
+    user-select: none;
+}
+
+/* STYLE FOR header-1 START */
+
+header .header-1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 20px;
+}
+
+header .header-1 .logo {
+    text-decoration: none;
+}
+
+header .header-1 img {
+    max-width: 200px;
+}
+
+header .header-1 .s {
+    position: relative;
+    height: auto;
+}
+
+header .header-1 form {
+    display: flex;
+}
+
+header .header-1 form #search {
+    height: 40px;
+    width: 600px;
+    background: none;
+    outline: none;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    border: 2px solid var(--col-blue1);
+    color: white;
+    padding: 0 10px;
+    font-size: 17px;
+}
+
+header .header-1 form label {
+    height: 40px;
+    width: 60px;
+    background-color: var(--col-blue1);
+    color: #fff;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+}
+
+#resultat {
+    position: absolute;
+    border: 1px solid var(--col-blue1);
+    width: 600px;
+    top: 40px;
+    border-top: none;
+    height: auto;
+    background-color: var(--bg-black1);
+    opacity: 0.9;
+    z-index: 15;
+    /* display: none; */
+    padding-right: 12px;
+}
+
+#resultat ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#resultat ul li {
+    margin-top: 11px;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+}
+
+#resultat ul li a:hover {
+    color: var(--col-blue1);
+}
+
+#resultat ul li a {
+    font-size: 16px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+}
+
+#resultat ul img {
+    width: 50px;
+    height: 75px;
+    opacity: 1;
+    margin-right: 12px;
+}
+
+#resultat ul hr {
+    margin: 2px;
+    color: white;
+    opacity: 1;
+}
+
+/* STYLE FOR header-1 END*/
+
+
+/* STYLE FOR header-2 START*/
+
+header .header-2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--bg-black1);
+    width: 100%;
+    opacity: 0.9;
+    padding: 10px 20px;
+}
+
+header .header-2 .nav_bar ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .header-2 .nav_bar ul li {
+    list-style: none;
+    margin: 10px 5px;
+}
+
+header .header-2 .nav_bar ul li a {
+    color: white;
+    opacity: 1;
+    display: block;
+    padding: 0 15px;
+    font-size: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bold;
+    line-height: 50px;
+    transition: .5s ease;
+}
+
+header .header-2 div {
+    color: white;
+    cursor: pointer;
+    display: none;
+    font-size: 30px;
+}
+
+header .header-2 div.fa-times {
+    color: var(--col-red);
+}
+
+header .header-2.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, .8);
+}
+
+header .header-2 .nav_bar ul li a.active,
+header .header-2 .nav_bar ul li a:hover,
+.nav_bar button:hover {
+    background-color: var(--col-red);
+}
+
+.nav_bar button {
+    width: 163px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+    font-weight: 500;
+    transition: .5s ease;
+    text-transform: uppercase;
+}
+
+.nav_bar button:hover {
+    border-color: var(--col-red);
+}
+
+.nav_bar form {
+    display: inline;
+}
+
+/* STYLE FOR header-2 END */
+
+
+/* ALL ABOUT MEDIA QUERIES IN THE NAVIGATION BAR */
+@media (max-width: 885px) {
+
+    header .header-1 {
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+    }
+
+    header .header-1 form #search,
+    #resultat {
+        width: 70vw;
+    }
+
+    header .header-1 form #search,
+    #resultat {
+        margin-left: 25px;
+    }
+
+    header .header-1 {
+        justify-content: center;
+    }
+
+    header .header-1 a {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    header .header-2 div {
+        display: block;
+    }
+
+    header .header-2 {
+        position: relative;
+        background-color: var(--bg-black1);
+        opacity: .9;
+    }
+
+    header .header-2 .nav_bar {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        opacity: 0;
+        width: 250px;
+        z-index: 60;
+        transition: all 1.2s ease-in-out;
+    }
+
+    header .header-2 .nav_bar ul {
+        flex-direction: column;
+        width: 100%;
+        border-radius: 5px;
+        padding: 40px 0 0 0;
+        background-color: var(--bg-black1);
+        height: 100vh;
+        justify-content: flex-start;
+    }
+
+    header .header-2 .nav_bar ul li {
+        width: 80%;
+        text-align: justify;
+    }
+
+    header .header-2 .nav_bar ul li a,
+    .nav_bar .btnLogin-popup {
+        margin-bottom: 12px;
+    }
+
+    header .header-2 .nav_bar.nav-toggle {
+        right: 0%;
+        opacity: 1;
+    }
+
+}
+
 /* ADMINISTRATION NAVBAR */
 
 body.dark {
