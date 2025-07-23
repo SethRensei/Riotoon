@@ -113,8 +113,8 @@ class CategoryRepository extends Category
         try {
             $query = self::$connec->query("SELECT c.*, COUNT(wc.webtoon) AS webtoon_count
                 FROM category c
-                LEFT JOIN web_cat wc ON c.c_id = wc.category
-                GROUP BY c.c_id, c.label
+                LEFT JOIN web_cat wc ON c.id = wc.category
+                GROUP BY c.id, c.label
                 ORDER BY c.label");
             $items = $query->fetchAll(\PDO::FETCH_CLASS, Category::class);
         } catch (\PDOException $e) {

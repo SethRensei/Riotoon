@@ -3,7 +3,8 @@
     "description": "Riotoon your webtoon's reader",
     "autoload": {
         "files": [
-            "src/Function/Helpers.php"
+            "src/Function/Helpers.php",
+            "src/Function/htmlHelp.php"
         ],
         "psr-4": {
             "Riotoon\\": "src/"

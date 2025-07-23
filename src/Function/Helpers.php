@@ -73,3 +73,17 @@ function uploadFile(
 
     return '';
 }
+
+/**
+ * Generate an excerpt of a given content string with a specified character limit.
+ * @param mixed $content The content string to generate an excerpt from.
+ * @param int $limit (Optional) The character limit for the excerpt (default: 15).
+ * @return string The excerpted content with an ellipsis (...) if truncated.
+ */
+function excerpt($content, int $limit = 15)
+{
+    $content = unClean($content);
+    if (mb_strlen($content) <= $limit)
+        return $content;
+    return mb_substr($content, 0, $limit) . '...';
+}

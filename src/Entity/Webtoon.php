@@ -6,6 +6,7 @@ use Riotoon\Service\BuilderError;
 
 class Webtoon
 {
+    private $STATUS_VALID = ['ONGOING', 'FINISHED', 'SUSPENDED'];
     private ?int $id = null;
     private ?string $title = null;
     private ?string $author = null;
@@ -14,11 +15,9 @@ class Webtoon
     private ?string $status = null;
     private ?int $likes = null;
     private ?int $dislikes = null;
-    private ?\DateTime $created_at = null;
-
-    public function __construct() {
-        $this->created_at = new \DateTime();
-    }
+    private ?string $created_at = null;
+    private $c_ids;
+    private $categories;
 
     public function getId(): ?int
     {
@@ -65,7 +64,7 @@ class Webtoon
     public function setCover(string $cover): self
     {
         if ($cover == '')
-            BuildErrors::setErrors('image', 'Impossible de charger une image vide');
+            BuildErrors::setErrors('file', 'Impossible de charger une image vide');
         $this->cover = $cover;
         return $this;
     }
@@ -76,6 +75,8 @@ class Webtoon
     }
     public function setStatus(string $status): self
     {
+        if (!in_array($status, $this->STATUS_VALID))
+            BuilderError::setErrors('status', 'Ce statut n\'est pas valide');
         $this->status = clean($status);
         return $this;
     }
@@ -100,8 +101,30 @@ class Webtoon
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->created_at;
+    }
+
+    /**
+     * Get the value of categories
+     */
+    public function getCategories() {
+        return $this->categories;
+    }
+
+    /**
+     * Get the value of c_ids
+     */
+    public function getIDCategories() {
+        return $this->c_ids;
+    }
+
+    public function statusValid() {
+        return [
+            'ONGOING' => 'En cours' , 
+            'FINISHED' => 'Terminé' ,
+            'SUSPENDED' => 'Suspendu'
+        ];
     }
 }

@@ -22,62 +22,84 @@ if (isset($_POST['validate'], $_FILES['image']['name'])) {
             ->setCover(str_replace('../public/', '', $path))
             ->setSynopsis($_POST['synopsis']);
         $errors = BuilderError::getErrors();
-        if (empty($errors) and move_uploaded_file($_FILES['image']['tmp_name'], $path)) {
-            $id = $repository->new($webtoon);
-            foreach ($_POST['categories'] as $v)
-                CategoryRepository::addCategoriesForWebtoon($id, $v);
-            $_POST = [];
-            $_SESSION['success'] = true;
-            $_SESSION['content'] = 'Le webtoon suivant a été ajouté : ' . unClean($webtoon->getTitle());
-            // header('Location:' . $router->url('home-admin'));
-        } else
-            BuilderError::setErrors('fail', "Upload du fichier échoué");
+        if (!empty($errors))
+            http_response_code(422);
+        else {
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $path)) {
+                $id = $repository->new($webtoon);
+                foreach ($_POST['categories'] as $v)
+                    CategoryRepository::addCategoriesForWebtoon($id, $v);
+                $_POST = [];
+                $_SESSION['success'] = true;
+                $_SESSION['content'] = 'Le webtoon suivant a été ajouté : ' . unClean($webtoon->getTitle());
+                header('Location:' . $router->url('admin_index'));
+            } else
+                BuilderError::setErrors('file', "Upload du fichier échoué");
+        }
     } else
         BuilderError::setErrors('empty', 'Veuillez remplir tous les champs');
 }
 $errors = BuilderError::getErrors();
+if (!empty($errors))
+    http_response_code(422);
 ?>
 <div class="fs-4">
     <h1 class="mt-1">Ajouter un Webtoon</h1>
-    <?php if (!empty($errors)): ?>
-        <?php foreach ($errors as $err): ?>
-            <?= $err ?>
-        <?php endforeach ?>
-    <?php endif ?>
     <form method="post" class="row g-3 mt-2 justify-content-center" enctype="multipart/form-data">
+        <div class="col-md-10">
+            <?php if (isset($errors['empty'])): ?>
+                <?= messageFlash('danger', $errors['empty']) ?>
+            <?php endif ?>
+        </div>
         <div class="col-md-5 form-group">
-            <label class="form-label">Titre<i class="text-danger">*</i></label>
-            <input type="text" name="title" value="<?= $_POST['title'] ?? '' ?>" class="form-control"
+            <label for="title" class="form-label">Titre<i class="text-danger">*</i></label>
+            <input type="text" id="title" name="title" value="<?= $_POST['title'] ?? '' ?>" class="form-control"
                 placeholder="ex: the beginning after the end">
         </div>
         <div class="col-md-5 mb-3">
-            <label class="form-label">Auteur<i class="text-danger">*</i></label>
-            <input type="text" name="author" value="<?= $_POST['author'] ?? '' ?>" class="form-control"
+            <label for="author" class="form-label">Auteur<i class="text-danger">*</i></label>
+            <input type="text" id="author" name="author" value="<?= $_POST['author'] ?? '' ?>" class="form-control"
                 placeholder="ex: TurtleMe">
         </div>
         <div class="col-md-5">
-            <label class="form-label">Photo<i class="text-danger">*</i></label>
-            <input type="file" name="image" class="form-control" value="<?= $_FILES['image']['name'] ?? '' ?>">
+            <label for="cover" class="form-label">Photo<i class="text-danger">*</i></label>
+            <input type="file" id="cover" name="image" class="form-control" value="<?= $_FILES['image']['name'] ?? '' ?>">
+            <?php if(isset($errors['file'])):?>
+                <?= messageFlash('danger',$errors['file']) ?>
+            <?php endif;?>
         </div>
         <div class="col-md-5 mb-3">
-            <label class="form-label">Statut<i class="text-danger">*</i></label>
-            <select class="form-select" name="status">
-                <option value="ONGOING" select>En cours</option>
-                <option value="FINISHED">Terminé</option>
-                <option value="SUSPENDED">Suspendu</option>
+            <label for="status" class="form-label">Statut<i class="text-danger">*</i></label>
+            <select class="form-select" name="status" id="status">
+                <option>Choisi une option</option>
+                <?php foreach ($webtoon->statusValid() as $key => $value):?>
+                <option value="<?=$key?>" <?= (($_POST['status'] ?? '') == $key) ? 'selected' : '' ?>><?= $value?></option>
+                <?php endforeach; ?>
             </select>
+            <?php if(isset($errors['status'])):?>
+                <?= messageFlash('danger',$errors['status']) ?>
+            <?php endif;?>
         </div>
         <div class="col-md-10">
-            <label class="form-label">Synopsis<i class="text-danger">*</i></label>
-            <textarea name="synopsis" rows="6" class="form-control"><?= unClean($_POST['synopsis'] ?? '') ?></textarea>
+            <label for="synopsis" class="form-label">Synopsis<i class="text-danger">*</i></label>
+            <textarea id="synopsis" name="synopsis" rows="6" class="form-control"><?= unClean($_POST['synopsis'] ?? '') ?></textarea>
+            <?php if(isset($errors['synopsis'])):?>
+                <?= messageFlash('danger',$errors['synopsis']) ?>
+            <?php endif;?>
         </div>
         <div class="col-md-10 mt-3">
             <label class="form-label">Genres<i class="text-danger">*</i></label>
             <div id="grid">
                 <?php foreach ($categories as $cat) :?>
+                    <?php
+                        $checked = '';
+                        if (isset($_POST['categories']) && in_array($cat->getId(), $_POST['categories'])) {
+                            $checked = 'checked';
+                        }
+                    ?>
                     <div>
                         <label for="cat_<?= $cat->getId() ?>"><?= $cat->getLabel() ?></label><br>
-                        <input type="checkbox" id="cat_<?= $cat->getId() ?>" value="<?= $cat->getId() ?>" name="categories[]">
+                        <input type="checkbox" id="cat_<?= $cat->getId() ?>" value="<?= $cat->getId() ?>" name="categories[]" <?= $checked ?>>
                     </div>
                 <?php endforeach?>
             </div>

@@ -43,7 +43,7 @@
     <div class="navigation">
         <ul>
             <li>
-                <a href="#">
+                <a href="<?= $router->url('admin_index')?>">
                     <span class="icon">
                         <i class="fas fa-house-laptop"></i>
                     </span>

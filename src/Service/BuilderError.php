@@ -15,4 +15,12 @@ class BuilderError
     {
         return self::$errors;
     }
+
+    public static function isErrors(mixed $errors): bool {
+        if(empty($errors)) {
+            http_response_code(422);
+            return true;
+        } else
+            return false;
+    }
 }
