@@ -44,6 +44,22 @@ CREATE TABLE IF NOT EXISTS web_cat(
     ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS users
+(
+    id INT AUTO_INCREMENT,
+    pseudo VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(120) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    picture VARCHAR(255) DEFAULT NULL,
+    roles LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`roles`)),
+    u_token INT NOT NULL,
+    token_expire INT(12) NULL,
+    is_verify BOOL DEFAULT FALSE,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT pk_user PRIMARY KEY(id)
+);
+
 -- INSERT DATA
 INSERT INTO category(label)
 VALUES ('Action'),('Adulte'),('Arts Martiaux'),('Aventure'),('Biographie'),('Combat'),('Comédie'),('Cyberpunk'),('Drame'),('Famille'),('Fantaisie'),('Guerre'),('Historique'),('Horreur'),('Isekai'),('Josei'),('Magie'),('Musique'),('Mystère'),('Politique'),('Post-apocalyptique'),('Psycho'),('Romance'),('Sc-Fi'),('School life'),('Seinen'),('Shojo'),('Shonen'),('Slice of Life'),('Sport'),('Steampunk'),('Surnaturel'),('Thriller'),('Tragédie'),('Webcomic');

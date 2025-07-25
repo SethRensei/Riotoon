@@ -4,7 +4,8 @@
     "autoload": {
         "files": [
             "src/Function/Helpers.php",
-            "src/Function/htmlHelp.php"
+            "src/Function/htmlHelp.php",
+            "src/Function/mail/mailTemplate.php"
         ],
         "psr-4": {
             "Riotoon\\": "src/"

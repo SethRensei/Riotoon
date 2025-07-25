@@ -73,6 +73,8 @@ class Router {
      */
     public function url(string $name, array $params = []): string
     {
-        return $this->router->generate($name, $params);
+            $base_url = $_ENV['APP_URL'] ?? 'http://localhost';
+            $path = $this->router->generate($name, $params);
+            return rtrim($base_url, '/') . $path;
     }
 }

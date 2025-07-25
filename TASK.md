@@ -11,10 +11,10 @@
 
 ## 👤 Authentication & user
 
-- [ ] Registration page
+- [x] Registration page
 - [ ] Login page
-- [ ] Secure logout
-- [ ] Email verification (optional)
+- [x] Secure logout
+- [x] Email verification (optional)
 - [ ] Forgot password / reset
 
 ## ❤️ User interaction

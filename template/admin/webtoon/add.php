@@ -45,7 +45,7 @@ if (!empty($errors))
 ?>
 <div class="fs-4">
     <h1 class="mt-1">Ajouter un Webtoon</h1>
-    <form method="post" class="row g-3 mt-2 justify-content-center" enctype="multipart/form-data">
+    <form method="post" class="row g-3 mt-2 justify-content-center" enctype="multipart/form-data" autocomplete="off">
         <div class="col-md-10">
             <?php if (isset($errors['empty'])): ?>
                 <?= messageFlash('danger', $errors['empty']) ?>

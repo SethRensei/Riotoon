@@ -73,7 +73,7 @@ if (!empty($errors))
             <h5 class="card-title text-danger">Photo actuelle</h5>
         </div>
     </div>
-    <form method="post" class="row g-3 mt-2 justify-content-center" enctype="multipart/form-data">
+    <form method="post" class="row g-3 mt-2 justify-content-center" enctype="multipart/form-data" autocomplete="off">
         <div class="col-md-10">
             <?php if (isset($errors['empty'])): ?>
                 <?= messageFlash('danger', $errors['empty']) ?>
