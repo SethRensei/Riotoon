@@ -1,5 +1,6 @@
 <?php
 
+use Riotoon\Service\BuilderError;
 use Riotoon\Entity\{Chapter, Webtoon};
 use Riotoon\Repository\{ChapterRepository, WebtoonRepository};
 
@@ -41,11 +42,33 @@ $last_chap = (int) $chapters[0]->getNumber();
 
 $pg_title = $web_title . ' Chapitre ' . $chap_num . ' | RioToon';
 $pg_desc = 'Lisez ' . $web_title . ' ' . $chapter->getNumber() . ' sur RioToon';
+
+$target = '../public/' . $chapter->getPath();
+if (!file_exists($target)) {
+    dd("Fichier introuvable : $target");
+}
+
+$errors = [];
+if (isset($_POST['download'])) {
+    if (isset($_SESSION['User']))
+        downloadComic('../public/' . $chapter->getPath(), replace($webtoon->getTitle()));
+    else
+        BuilderError::setErrors('connection_required', 'Veuillez-vous connecter pour télécharger ce chapitre');
+}
+$errors = BuilderError::getErrors();
+if (!empty($errors))
+    http_response_code(422);
 ?>
 
-<div class="page-content user-select-none">
-        <div class="read-title">
-            <h1><?= $web_title ?></h1>
+<div class="page-content reading-chapter user-select-none">
+    <div class="col-md-10 text-cente">
+        <?php if (!empty($errors)): ?>
+        <?php foreach ($errors as $err): ?>
+            <?= messageFlash('warning', $err) ?>
+        <?php endforeach ?>
+    <?php endif ?>
+    <div class="read-title">
+        <h1><?= $web_title ?></h1>
     </div>
     <div class="links">
         <?php if ($chap_num > $firsr_chap): ?>
@@ -58,7 +81,7 @@ $pg_desc = 'Lisez ' . $web_title . ' ' . $chapter->getNumber() . ' sur RioToon';
                         <?= $chap->getNumber() ?></option>
             <?php endforeach ?>
         </select>
-        <form method="post">
+        <form method="post" data-turbo="false">
             <button type="submit" name="download" title="Connexion requise">
                 <i class="fas fa-download"></i>Télécharger
             </button>

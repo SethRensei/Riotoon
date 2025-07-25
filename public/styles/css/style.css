@@ -240,8 +240,8 @@ html a {
 
 @media screen and (max-width: 540px) {
     .list {
-        width: 120px;
-        height: 174px;
+        width: 100px;
+        height: 164px;
         border-radius: 0;
     }
 
@@ -251,16 +251,14 @@ html a {
 
     .list .item .text2 {
         display: block;
-        padding: 5px 0 0 0;
     }
 
     .list .item .text2 h4 {
-        font-size: 15px !important;
+        font-size: 13px !important;
     }
 
     .list .item {
-        height: 125px;
-        border-radius: 10px;
+        height: 120px;
     }
 }
 
@@ -429,14 +427,12 @@ div.votes button.dislike i:hover,
 }
 
 .links {
-    width: 100%;
-    padding: 10px 20px;
+    padding: 10px 0;
     height: 90px;
 }
 
 .links a {
     color: var(--col-gray1);
-    margin-left: 24px;
     margin-right: 24px;
     text-decoration: none;
     font-size: 1.32rem;
@@ -447,10 +443,12 @@ div.votes button.dislike i:hover,
 }
 
 .links select {
-    width: auto;
+    width: 100px;
     height: 30px;
     padding: 0 12px;
-    border: none;
+    margin-right: 24px;
+    background: transparent;
+    border: 1px solid var(--col-gray1);
     outline: none;
     border-radius: 3px;
     color: black;
@@ -462,10 +460,10 @@ div.votes button.dislike i:hover,
 
 .links form {
     display: inline;
+    margin-right: 24px;
 }
 
 .links form button {
-    margin-left: 30px;
     padding: 5px 9px;
     border: none;
     background-color: var(--col-red);
@@ -481,14 +479,22 @@ div.votes button.dislike i:hover,
     background-color: var(--col-green);
 }
 
+.reading-chapter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .read-webt {
     margin-bottom: 38px;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: auto;
+}
+
+.read-webt img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 /* END STYLE FOR READ PAGE */
@@ -636,6 +642,7 @@ div.form-verif {
     text-align: center;
     align-items: center;
     justify-content: center;
+    height: 450px;
 }
 
 div.error-verif {

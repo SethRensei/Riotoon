@@ -132,3 +132,21 @@ function comicReader(string $target)
 
     return $imgs;
 }
+
+/**
+ * Allows to download a comic
+ * @param string $target The path of the comic
+ * @param string $title The title of the file download
+ * @return void
+ */
+function downloadComic(string $target, string $title)
+{
+    if (file_exists($target)) {
+        header('Content-Transfer-Encoding: binary');
+        header('Content-Disposition: attachment; filename="' . $title . '_' . basename($target) . '"');
+        header('Content-Length: ' . filesize($target));
+
+        readfile($target);
+        exit();
+    }
+}

@@ -15,7 +15,7 @@ if (isset($_POST["validate"])) {
             ->generateToken()->generateTokenExpire()
             ->setRoles(['ROLE_USER']);
         $errors = BuilderError::getErrors();
-        $content = "Nous sommes ravis que vous vous lanciez ! Vous devez d'abord confirmer votre compte. Il vous suffit de copier le code ci-dessous valade pendant 1h.";
+        $content = "Nous sommes ravis que vous vous lanciez ! Vous devez d'abord confirmer votre compte. Il vous suffit de copier le code ci-dessous. Il est valide pendant 1 heure.";
         $code = $repository->getToken();
         $message = verifyAccount('Bienvenue !',$content, $code, $router->url('home'));
         if(!empty($errors))

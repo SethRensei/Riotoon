@@ -61,6 +61,19 @@ final class UserRepository extends Users
         }
     }
 
+    public function changeToken(Users $user)
+    {
+        try {
+            $q = $this->connec->prepare("UPDATE users SET u_token = :tok, token_expire = :tok_ex WHERE pseudo = :pse");
+            $q->bindValue(':pse', $user->getPseudo(), \PDO::PARAM_STR);
+            $q->bindValue(':tok', $user->getToken(), \PDO::PARAM_INT);
+            $q->bindValue(':tok_ex', $user->getTokenExpire(), \PDO::PARAM_INT);
+            $q->execute();
+        } catch (\PDOException $e) {
+            die('Changement de token échoué : '. $e->getMessage());
+        }
+    }
+
     public function setPseudo(?string $pseudo): Users
     {
         parent::setPseudo($pseudo);

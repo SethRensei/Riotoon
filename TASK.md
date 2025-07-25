@@ -12,7 +12,7 @@
 ## 👤 Authentication & user
 
 - [x] Registration page
-- [ ] Login page
+- [x] Login page
 - [x] Secure logout
 - [x] Email verification (optional)
 - [ ] Forgot password / reset
