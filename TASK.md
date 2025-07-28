@@ -6,8 +6,8 @@
 - [x] Home page
 - [x] Webtoon details page
 - [x] Display of available chapters
-- [ ] Online chapter playback
-- [ ] Download a chapter
+- [x] Online chapter playback
+- [x] Download a chapter
 
 ## 👤 Authentication & user
 
@@ -19,8 +19,8 @@
 
 ## ❤️ User interaction
 
-- [ ] Like on chapters
-- [ ] Like on series
+- [ ] Like on chapters (optionnal)
+- [x] Like on series
 - [ ] Comment on a chapter
 - [ ] Delete/edit comment
 - [ ] Report content
@@ -42,7 +42,7 @@
 ## ⚙️ Technical
 
 - [x] Turbo/Stimulus integration
-- [ ] Partial reload via Turbo Stream
+- [x] Partial reload via Turbo Stream
 - [x] Flash messages (error/success)
 - [ ] Unit tests (if applicable)
 - [ ] Performance optimization (lazy-load, cache)

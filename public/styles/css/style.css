@@ -351,13 +351,7 @@ html a {
     background-color: transparent;
 }
 
-div.rio-v {
-    display: flex;
-    justify-content: space-between;
-}
-
 div.votes button {
-    margin: 0 12px;
     border: none;
     font-size: 1.22rem;
     cursor: pointer;
@@ -366,7 +360,6 @@ div.votes button {
 }
 
 div.votes button span.rio-m-9 {
-    margin-right: 9px;
     font-weight: 500;
     font-style: italic;
 }
@@ -408,8 +401,8 @@ div.votes button.dislike i:hover,
 
 @media screen and (max-width: 416px) {
     .one-webt .webt-img {
-        width: 200px;
-        height: 310px;
+        width: 224px;
+        height: 320px;
     }
 
     .one-webt .webt-info h4 {

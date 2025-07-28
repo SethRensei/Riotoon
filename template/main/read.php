@@ -43,11 +43,6 @@ $last_chap = (int) $chapters[0]->getNumber();
 $pg_title = $web_title . ' Chapitre ' . $chap_num . ' | RioToon';
 $pg_desc = 'Lisez ' . $web_title . ' ' . $chapter->getNumber() . ' sur RioToon';
 
-$target = '../public/' . $chapter->getPath();
-if (!file_exists($target)) {
-    dd("Fichier introuvable : $target");
-}
-
 $errors = [];
 if (isset($_POST['download'])) {
     if (isset($_SESSION['User']))

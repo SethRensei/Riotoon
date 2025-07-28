@@ -1,6 +1,6 @@
 <?php
 use Riotoon\Entity\{Chapter, Webtoon};
-use Riotoon\Repository\{ChapterRepository, WebtoonRepository};
+use Riotoon\Repository\{ChapterRepository, VoteRepository, WebtoonRepository};
 
 //Récupération des paramaètres dans l'url, id et le titre du scans
 $title = $params['title'];
@@ -26,6 +26,13 @@ if ($is_title !== $title) {
 $pg_title = unClean($webtoon->getTitle()) . ' | RioToon';
 /** @var Chapter|null */
 $chapters = ChapterRepository::findWebtoon($webtoon->getId());
+
+// Voting system
+$vote = false;
+$v = new VoteRepository();
+$v->updateCount($webtoon->getId());
+if (isset($_SESSION['User']))
+    $vote = $v->getClass($webtoon->getId(), $_SESSION['User']);
 ?>
 
 <div class="page-content">
@@ -36,13 +43,18 @@ $chapters = ChapterRepository::findWebtoon($webtoon->getId());
         <div class="webt-info">
             <h4><?= unClean($webtoon->getTitle()) ?></h4>
             <div class="info">
-                <div class="rio-v">
-                    <p>Auteur : <?= unClean($webtoon->getAuthor()) ?></p>
-                    <div id="vote" class="votes">
-                    <button class="like"><span class="rio-m-9">(<span id="like-count"><?= $webtoon->getLikes() ?></span>)
-                    </span><i class="fas fa-thumbs-up"></i></button>
-                        <button class="dislike"><span class="rio-m-9">(<span id="dislike-count"><?= $webtoon->getDislikes() ?></span>)
-                        </span><i class="fas fa-thumbs-down"></i></button>
+                <div class="d-flex justify-content-between">
+                    <p class="col-md-7">Auteur : <?= unClean($webtoon->getAuthor()) ?></p>
+                    <div id="vote" class="col-md-5 d-flex justify-content-end votes <?= $vote ?>" data-id="<?= $webtoon->getId() ?>"
+                        data-ref="<?= $router->url('vote') ?>">
+                        <button class="like me-4"><span class="rio-m-9">
+                                (<span id="like-count"><?= $webtoon->getLikes() ?></span>)
+                            </span><i class="fas fa-thumbs-up"></i>
+                        </button>
+                        <button class="dislike"><span class="rio-m-9">
+                                (<span id="dislike-count"><?= $webtoon->getDislikes() ?></span>)
+                            </span><i class="fas fa-thumbs-down"></i>
+                        </button>
                     </div>
                 </div>
                 <hr>

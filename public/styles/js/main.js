@@ -60,4 +60,36 @@ $(document).ready(() => {
             } else $(".r-error").show().text("Avoir au moins une lettre");
         } else $(".r-error").hide();
     });
+
+    // Voting system
+    let vote = $("#vote");
+    let url_vote = vote.data("ref");
+    $(".like", vote).click(function (e) {
+        e.preventDefault();
+        votes(1);
+    });
+    $(".dislike", vote).click(function (e) {
+        e.preventDefault();
+        votes(-1);
+    });
+
+    function votes(value) {
+        $.post(url_vote, {
+            id: vote.data("id"),
+            vote: value,
+        })
+        .done(function (data, textStatus, jqXHR) {
+            $("#like-count").text(data.likes);
+            $("#dislike-count").text(data.dislikes);
+            vote.removeClass("is-like is-dislike");
+            if (data.success) {
+                if (value == 1) {
+                    vote.addClass("is-like");
+                } else vote.addClass("is-dislike");
+            }
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+        });
+    }
 })

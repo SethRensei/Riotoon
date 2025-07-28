@@ -60,6 +60,20 @@ CREATE TABLE IF NOT EXISTS users
     CONSTRAINT pk_user PRIMARY KEY(id)
 );
 
+CREATE TABLE IF NOT EXISTS vote(
+    id INT AUTO_INCREMENT,
+    webtoon INT NOT NULL,
+    user INT NOT NULL,
+    vote INT NOT NULL,
+    CONSTRAINT pk_vote PRIMARY KEY(id),
+    CONSTRAINT fk_webt_vote FOREIGN KEY(webtoon) REFERENCES webtoon(id)
+    ON UPDATE RESTRICT
+    ON DELETE CASCADE,
+    CONSTRAINT fk_user_vote FOREIGN KEY(user) REFERENCES users(id)
+    ON UPDATE RESTRICT
+    ON DELETE CASCADE
+)
+
 -- INSERT DATA
 INSERT INTO category(label)
 VALUES ('Action'),('Adulte'),('Arts Martiaux'),('Aventure'),('Biographie'),('Combat'),('Comédie'),('Cyberpunk'),('Drame'),('Famille'),('Fantaisie'),('Guerre'),('Historique'),('Horreur'),('Isekai'),('Josei'),('Magie'),('Musique'),('Mystère'),('Politique'),('Post-apocalyptique'),('Psycho'),('Romance'),('Sc-Fi'),('School life'),('Seinen'),('Shojo'),('Shonen'),('Slice of Life'),('Sport'),('Steampunk'),('Surnaturel'),('Thriller'),('Tragédie'),('Webcomic');
