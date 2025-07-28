@@ -43,7 +43,7 @@ class CategoryRepository extends Category
     {
         self::init();
         try {
-            $query = self::$connec->prepare("SELECT * FROM category WHERE c_id=:id");
+            $query = self::$connec->prepare("SELECT * FROM category WHERE id=:id");
             $query->bindValue(":id", $id);
             $query->execute();
             $query->setFetchMode(\PDO::FETCH_CLASS, Category::class);

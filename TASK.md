@@ -35,7 +35,7 @@
 ## 🔍 User experience
 
 - [x] Search bar (by title and author)
-- [ ] Genre filtering
+- [x] Genre filtering
 - [x] Pagination
 - [ ] Dark mode (Optionnal)
 
